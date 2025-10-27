@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/logo.webp" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gururaj</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+    <script >
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 200) {
+          document.body.classList.add("scrolled");
+        } else {
+          document.body.classList.remove("scrolled");
+        }
+      });
+    </script>
+  </body>
+</html>
