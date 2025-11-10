@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useLayoutEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger"; // Correct import for Vite
@@ -8,7 +8,7 @@ gsap.registerPlugin(ScrollTrigger);
 const ScrollToTop = () => {
   const { pathname } = useLocation();
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const timeout = setTimeout(() => {
       window.scrollTo(0, 0);
       // Refresh ScrollTrigger after scroll

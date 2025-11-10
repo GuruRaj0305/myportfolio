@@ -71,11 +71,11 @@ useGSAP(() => {
         >
           <div
             ref={contentRef}
-            className="flex-1 text-left max-w-[500px] w-full min-h-full flex items-center align-middle"
+            className="flex-1 text-left max-w-[500px] xl:max-w-[700px] w-full min-h-full flex items-center align-middle"
           >
             <div >
               <h1 className="text-4xl md:text-6xl font-bold mb-4 text-white">
-                Hi, I’m <span className="text-blue-400">Gururaj</span>
+                Hi, I’m <span className="text-blue-400">Gururaj HR</span>
               </h1>
               <p ref={pRef} className="text-lg md:text-xl text-gray-300 mb-6">
                 {HOME.banner.tagline}
@@ -89,14 +89,15 @@ useGSAP(() => {
             </div>
           </div>
 
+          
           <div
             ref={imageRef}
-            className="mt-10 md:mt-0 flex justify-center max-lg:hidden pr-10 max-h-[100%]"
+            className="mt-10 md:mt-0 flex justify-center max-lg:hidden pr-10"
           >
             <img
               src="/my-image.webp"
               alt="My Portrait"
-              className="max-w-sm md:max-w-md lg:max-w-lg w-full max-h-auto object-contain drop-shadow-lg"
+              className="w-auto max-h-[80vh] object-contain drop-shadow-lg"
             />
           </div>
         </div>

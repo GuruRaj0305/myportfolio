@@ -104,7 +104,7 @@ const AboutPage = () => {
       {/* 🧭 Floating Symbol OUTSIDE scroll-smooth content */}
       <div
         ref={symbolRef}
-        className="fixed right-10 top-1/3 flex flex-col items-center z-[999] max-md:right-3"
+        className="fixed right-10 top-1/3 flex flex-col items-center z-[999] max-md:right-3 w-20"
       >
         <div
           ref={iconTextRef}

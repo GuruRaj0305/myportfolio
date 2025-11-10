@@ -1,9 +1,4 @@
-// Author: Gururaj
-// Created: 23rd May 2025
-// Description: Main layout for inner app(once login ), which wraps sidebar and topbar.
-// Version: 1.0.0
-// components/Layout.jsx
-// Modified: 
+
 
 import { Outlet } from "react-router-dom";
 import Header from "./header/Header";
@@ -20,7 +15,7 @@ export default function Layout() {
         <ScrollToTop />
        
         <Header />
-         <Outlet /> 
+        <Outlet /> 
            
          
     </>

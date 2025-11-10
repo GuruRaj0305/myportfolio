@@ -18,8 +18,8 @@ const SkillsAndProject = lazy(() => import("./pages/skillsProjects/Index"));
 
 const routeDefinations = createRoutesFromElements(
   <>
-    <Route path="/" element={<Layout />}>
-      <Route index element={<Home />} />
+    <Route path="/" element={<Layout />} >
+      <Route index element={<Home />}  />
       <Route
         path="/about"
         element={

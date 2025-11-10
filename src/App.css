@@ -86,14 +86,3 @@
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;     /* Firefox */
 }
-
-.header {
-  backdrop-filter: blur(0px);
-  transition: all 0.7s ease; /* smooth transition */
-}
-
-body.scrolled .header {
-  backdrop-filter: blur(4px);
-  background: rgba(0, 0, 0, 0.4);
-  padding: 10px 20px;
-}

@@ -13,7 +13,7 @@ const FizzyButton = () => {
       setTimeout(() => {
         setStatus("");
         const link = document.createElement("a");
-        link.href = "/resume/resume_gururaj.pdf"; 
+        link.href = "/resume_gururaj.pdf"; 
         link.download = "Gururaj_HR_Resume.pdf";
         link.click();
       }, 1250);

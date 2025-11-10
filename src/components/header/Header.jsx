@@ -111,21 +111,14 @@ function Header() {
         {/* Desktop nav */}
         <nav ref={navUl} className="  desktop hidden md:block p-5">
           <ul className="flex gap-8 text-lg font-medium text-gray-300  ">
-            <li>
-              <NavButton to="/">Home</NavButton>
-            </li>
-            <li>
-              <NavButton to="/about">About</NavButton>
-            </li>
-            <li>
-              <NavButton to="/projects">Projects</NavButton>
-            </li>
-            <li>
-              <NavButton to="/experience">Experience</NavButton>
-            </li>
-            <li>
-              <NavButton to="/contact">Contact</NavButton>
-            </li>
+            {mobileLinks.map((link) => {
+              return (
+                <li key={link.link} >
+                  <NavButton to={link.link}>{link.text}</NavButton>
+                </li>
+              )
+            })}
+
           </ul>
         </nav>
 

@@ -15,7 +15,7 @@ import { useLocation } from "react-router-dom";
 import { useGSAP } from "@gsap/react";
 
 // Register plugin once
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 function Home() {
   const aboutRef = useRef(null);
@@ -47,8 +47,8 @@ function Home() {
                 <div className="w-full flex flex-col ">
                   <Banner />
                 </div>
-                <About ref={aboutRef} />
-                <Highlights aboutRef={aboutRef} />
+                <About ref={aboutRef} /> 
+                <Highlights aboutRef={aboutRef} /> 
                 <FeaturedProjects />
 
                 <div className="flex justify-center align-middle max-md:flex-col ">

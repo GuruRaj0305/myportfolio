@@ -79,7 +79,7 @@ const ExperienceBanner = () => {
       </p>
 
       <div ref={buttonRef}>
-        <LaserButton targetBlank={true} to="/resume/resume_gururaj.pdf" >Resume</LaserButton>
+        <LaserButton targetBlank={true} to="/resume_gururaj.pdf" >Resume</LaserButton>
       </div>
     </section>
   );
