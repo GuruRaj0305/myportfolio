@@ -6,8 +6,7 @@ body {
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
-    background-color: black;
-    background-image: url("/main-background.webp");
+    background-color: #161616;
     font-family: "Bricolage Grotesque", sans-serif;
     font-optical-sizing: auto;
     font-weight: 500;
@@ -16,6 +15,18 @@ body {
       "wdth" 100;
     margin: 0;
     padding: 0;
+}
+
+
+/* Hide scrollbar for Chrome, Safari, Edge */
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+/* Hide scrollbar for Firefox */
+* {
+  scrollbar-width: none;
 }
 
 
@@ -96,3 +107,102 @@ body.scrolled .header {
   padding: 10px 20px;
 }
 
+
+@keyframes float1 {
+  0%   { transform: translateY(0px) translateX(0px); }
+  50%  { transform: translateY(-40px) translateX(20px); }
+  100% { transform: translateY(0px) translateX(0px); }
+}
+
+@keyframes float2 {
+  0%   { transform: translateY(0px) translateX(0px); }
+  50%  { transform: translateY(30px) translateX(-25px); }
+  100% { transform: translateY(0px) translateX(0px); }
+}
+
+@keyframes float3 {
+  0%   { transform: translateY(0px) translateX(0px); }
+  50%  { transform: translateY(-20px) translateX(-40px); }
+  100% { transform: translateY(0px) translateX(0px); }
+}
+
+@keyframes slow-pulse {
+  0%, 100% { transform: scale(1); opacity: 0.4; }
+  50%      { transform: scale(1.15); opacity: 0.6; }
+}
+
+.animate-float1 { animation: float1 6s ease-in-out infinite; }
+.animate-float2 { animation: float2 7s ease-in-out infinite; }
+.animate-float3 { animation: float3 5.5s ease-in-out infinite; }
+.animate-slow-pulse { animation: slow-pulse 8s ease-in-out infinite; }
+
+
+/* Fix react-slick overflowing issue */
+.slick-slide > div {
+  width: 100% !important;
+}
+
+.slick-slide {
+  display: flex !important;
+  justify-content: center !important;
+}
+
+.slick-slide img {
+  width: 100% !important;
+  height: auto !important;
+  max-height: 500px; /* limit big images */
+  object-fit: contain !important;
+}
+
+/* Make arrows visible */
+.slick-prev, .slick-next {
+  z-index: 50 !important;
+}
+
+/* Dots on top */
+.slick-dots {
+  z-index: 40 !important;
+}
+
+
+
+
+
+.text-30 {
+  color: #dcdcdc;
+}
+.text-10 {
+  color: #2d5fff;
+}
+.text-60 {
+  color: #161616;
+}
+
+.bg-30 {
+  background-color: #dcdcdc;
+}
+.bg-10 {
+  background-color: #2d5fff;
+}
+.bg-60 {
+  background-color: #161616;
+}
+.hov-text-30:hover {
+  color: #dcdcdc;
+}
+.hov-text-10:hover {
+  color: #2d5fff;
+}
+.hov-text-60:hover {
+  color: #161616;
+}
+
+.hov-bg-30:hover {
+  background-color: #dcdcdc;
+}
+.hov-bg-10:hover {
+  background-color: #2d5fff;
+}
+.hov-bg-60:hover {
+  background-color: #161616;
+}

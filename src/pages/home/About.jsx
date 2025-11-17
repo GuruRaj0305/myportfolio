@@ -3,6 +3,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import CustommButton from "../../components/custom/Button";
 import { useGSAP } from "@gsap/react";
+import { HOME } from "../../data";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -65,9 +66,7 @@ const About = forwardRef((props, ref) => {
         ref={paragraphRef}
         className="text-gray-300 text-lg md:text-xl max-w-3xl leading-relaxed mb-10"
       >
-        I am a passionate software developer with a love for building efficient
-        and scalable web applications. I continuously explore new technologies
-        to create innovative solutions and improve user experiences.
+        {HOME.about}
       </p>
 
       <div ref={buttonRef}>

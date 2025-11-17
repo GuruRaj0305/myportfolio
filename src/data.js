@@ -50,10 +50,15 @@ export const EXPERIENCE = {
   resumeLink: "#", // replace with actual resume link
 };
 
+const getKey = {
+  "multi-tenant-architecture" : ""
+};
+
 
 export const PROJECTS = {
-  multiTenent: {
-    name : "multi-tenant SaaS platform",
+  "multi-tenant-architecture": {
+    slug: "multi-tenant-architecture",
+    name : "Multi-tenant SaaS platform",
     tagline: "A scalable SaaS platform enabling multiple clients to access a suite of applications tailored to their needs.",
     description: {
       short:
@@ -64,11 +69,11 @@ export const PROJECTS = {
       Built with a focus on scalability and performance, the platform can handle complex combinations of clients and applications without compromising security, user experience, or operational efficiency.`,
     },
     role: [
-      "Built the Super Administrator module to manage tenants, subscriptions, modules, applications, and resource usage across the platform.",
       "Developed an API Gateway to efficiently route requests across multiple modules, leveraging intelligence from the Super Administrator module to optimize request handling, enforce security, and improve performance.",
+      "Built the Super Administrator module to manage tenants, subscriptions, modules, applications, and resource usage across the platform.",
       "Managed containerized deployments using Docker and orchestrated them with Kubernetes, ensuring scalability, reliability, and streamlined maintenance.",
     ],
-    techStack: ["React", "Node.js", "PostgreSQL", "JWT", "Key Cloak", "NGINX", "lua", "Kubernetes", "Docker"],
+    techStack: ["NGINX", "React", "Node JS", "PostgreSQL", "JWT", "Key Cloak", "Lua", "Kubernetes", "Docker"],
     features: [
       "Multi-tenant architecture",
       "Real-time updates",
@@ -86,7 +91,7 @@ export const PROJECTS = {
     ],
     images: [
       project1,
-     project1,
+      project1,
     ],
     links: {
       caseStudy: "/projects/saas-pms",
@@ -94,7 +99,8 @@ export const PROJECTS = {
       repo: null, // keep null if private
     },
   },
-  pms: {
+  "project-management-system": {
+    slug: "project-management-system",
     name : "Project Management System",
     tagline: "A comprehensive platform to manage projects, tasks, features, and team workflows efficiently.",
     description: {
@@ -127,7 +133,7 @@ export const PROJECTS = {
       "Reduced project tracking overhead and improved overall team productivity.",
     ],
     images: [
-       project1,,
+      project1,
       project1,
     ],
     links: {
@@ -136,7 +142,8 @@ export const PROJECTS = {
       repo: null, // keep null if private
     },
   },
-  ams: {
+  "appointment-management-system": {
+    slug: "appointment-management-system",
     name : "Appointment Management System",
     tagline: "A robust system to manage appointments efficiently with automated scheduling and notifications.",
     description: {
@@ -171,8 +178,8 @@ export const PROJECTS = {
       "Delivered a scalable, secure, and reliable backend supporting admin panel and frontend functionalities."
     ],
     images: [
-       project1,,
-      project1,
+      // project1,
+      // project1,
     ],
     links: {
       caseStudy: "/projects/saas-pms",
@@ -197,11 +204,12 @@ export const SKILLS = {
 
 export const HOME = {
   banner : {
-    tagline : " A passionate Web Developer building modern, scalable applications."
-  }
+    tagline : " A passionate Software Developer building modern, scalable applications."
+  },
+  about : " I am a passionate software developer with a love for building efficient and scalable applications. I continuously explore new technologies to create innovative solutions and improve user experiences.",
+  highlights: [
+    {name : "Years of Exerinece", value : "2+ years as Software Developer", link: "/experience"},
+    {name : "Skills", value : "Python, Django, Node JS, Laravel, React, Linux, Nginx", link: "/projects"},
+    {name : "Current Focus", value : "Exploring DevOps & AI", link: "/projects"},
+  ]
 };
-
-
-
-
-

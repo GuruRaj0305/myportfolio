@@ -1,7 +1,10 @@
 import { useRef } from "react";
+
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import { HOME } from "../../data";
+import { Link } from "react-router-dom";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -46,6 +49,35 @@ function Highlights({ aboutRef }) {
       }
     );
 
+    // GSAP HOVER ANIMATIONS
+    cards.forEach((card) => {
+      let hoverTl = gsap.timeline({ paused: true });
+
+      hoverTl
+        .to(card, {
+          scale: 1.07,
+          y: -10,
+          rotateX: 8,
+          rotateY: -8,
+          // boxShadow: "0px 20px 40px rgba(59,130,246,0.35)",
+          duration: 0.4,
+          ease: "power3.out",
+        })
+        .to(
+          card.querySelector(".glow"),
+          {
+            opacity: 0.5,
+            scale: 1.2,
+            duration: 0.4,
+            ease: "power3.out",
+          },
+          0
+        );
+
+      card.addEventListener("mouseenter", () => hoverTl.play());
+      card.addEventListener("mouseleave", () => hoverTl.reverse());
+    });
+
     // Cleanup only this component's ScrollTriggers
     return () => {
       clipTl.scrollTrigger && clipTl.scrollTrigger.kill();
@@ -66,25 +98,25 @@ function Highlights({ aboutRef }) {
         >
           <h2 className="text-4xl font-bold mb-12">Highlights</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl w-full">
-            {[
-              {
-                title: "Years of Experience",
-                text: "5+ years in full-stack development",
-              },
-              {
-                title: "Skills",
-                text: "React, Node.js, Django, Python, Linux",
-              },
-              { title: "Current Focus", text: "Learning DevOps & AI" },
-            ].map((item, i) => (
-              <div
-                key={i}
+            {HOME.highlights?.map((item, i) => (
+              <Link
+                to={item.link}
+                key={item.name}
                 ref={(el) => (cardsRef.current[i] = el)}
-                className="bg-gray-800 rounded-2xl shadow-lg p-6 text-center hover:scale-105 transition-transform duration-300"
+                className="
+    group relative block bg-gray-800 rounded-2xl 
+    shadow-lg p-6 text-center 
+    transition-all duration-300
+    transform-gpu
+    perspective-1000
+  "
               >
-                <h3 className="text-2xl font-semibold mb-4">{item.title}</h3>
-                <p className="text-gray-300">{item.text}</p>
-              </div>
+                {/* Glow layer for GSAP */}
+                <div className="glow absolute inset-0 -z-10 rounded-2xl opacity-0 blur-xl"></div>
+
+                <h3 className="text-2xl font-semibold mb-4">{item.name}</h3>
+                <p className="text-gray-300">{item.value}</p>
+              </Link>
             ))}
           </div>
         </section>

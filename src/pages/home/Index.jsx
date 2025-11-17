@@ -9,7 +9,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import TypingBackgroundText from "../../components/custom/TypingBackgroundText";
 import ScrollFalling from "../../components/custom/ScrollFalling";
-import JetFly from "../../components/custom/JetFly";
+import WanderingOrb from "../../components/custom/WanderingOrb";
 import Banner from "./Banner";
 import { useLocation } from "react-router-dom";
 import { useGSAP } from "@gsap/react";
@@ -37,20 +37,23 @@ function Home() {
 
   return (
     <>
-      <JetFly>
+     
         <ScrollFalling>
           <div className="relative w-full h-full">
             {/* Blurred background layer */}
             <TypingBackgroundText key={Math.random()}>
               {/* Foreground content */}
+
               <div className="relative z-10 ">
+                 
                 <div className="w-full flex flex-col ">
                   <Banner />
                 </div>
+                <WanderingOrb>
                 <About ref={aboutRef} /> 
                 <Highlights aboutRef={aboutRef} /> 
                 <FeaturedProjects />
-
+                </WanderingOrb>
                 <div className="flex justify-center align-middle max-md:flex-col ">
                   <CallToAction />
                   <div className="my-auto ">
@@ -61,7 +64,6 @@ function Home() {
             </TypingBackgroundText>
           </div>
         </ScrollFalling>
-      </JetFly>
     </>
   );
 }

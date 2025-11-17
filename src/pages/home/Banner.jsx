@@ -2,108 +2,154 @@ import { useRef } from "react";
 import { gsap } from "gsap";
 import { TextPlugin } from "gsap/dist/TextPlugin";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
 import Button from "../../components/custom/Button";
 import { HOME } from "../../data";
-import { useGSAP } from "@gsap/react";
 
 gsap.registerPlugin(TextPlugin, ScrollTrigger);
 
-function Banner() {
+export default function Banner() {
   const bannerRef = useRef(null);
-  const pRef = useRef(null);
+  const titleRef = useRef(null);
+  const nameRef = useRef(null);
+  const underlineRef = useRef(null);
+  const taglineRef = useRef(null);
   const buttonRef = useRef(null);
-  const contentRef = useRef(null);
-  const imageRef = useRef(null);
-  const BannerContainerRef = useRef(null);
 
-useGSAP(() => {
-  if (!pRef.current) return;
 
-  const ctx = gsap.context(() => {
-    const text = pRef.current.innerText;
-    gsap.set(pRef.current, { text: "" });
+  useGSAP(() => {
+    // -----------------------
+    // FIX: Prevent shifting during typing animation
+    // -----------------------
+    const fullText = taglineRef.current.innerText;
 
-    // 1️⃣ Scroll-trigger timeline (exists first, but doesn't overwrite)
-    const scrollTL = gsap.timeline({
-      scrollTrigger: {
-        trigger: BannerContainerRef.current,
-        start: "top top",
-        end: "top+=600px",
-        scrub: true,
-        pin: true,
-        pinSpacing: true,
-      },
-    });
+    // Lock final height before wiping text
+    const finalHeight = taglineRef.current.offsetHeight;
+    taglineRef.current.style.height = finalHeight + "px";
 
-    scrollTL.fromTo(
-      [imageRef.current, contentRef.current],
-      { x: 0, scale: 1, opacity: 1 }, // starting values
-      { x: -100, scale: 1, opacity: 0, immediateRender: false } // prevent overwriting
+    // Reset text for animation
+    gsap.set(taglineRef.current, { text: "" });
+
+    // -----------------------
+    // INITIAL LOAD ANIMATION
+    // -----------------------
+    const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+
+    tl.from(titleRef.current, {
+      y: 40,
+      opacity: 0,
+      duration: 0.8,
+    })
+      .from(nameRef.current, {
+        opacity: 0,
+        y: 20,
+        duration: 0.8,
+      })
+      .from(underlineRef.current, {
+        width: 0,
+        duration: 1,
+      })
+      .to(taglineRef.current, {
+        duration: 2,
+        text: { value: fullText, delimiter: "" },
+      })
+      .from(buttonRef.current, {
+        scale: 0.8,
+        opacity: 0,
+        duration: 0.6,
+      });
+
+    // -----------------------
+    // FLOATING TITLE EFFECT
+    // -----------------------
+
+    // -----------------------
+    // GLOW BEHIND NAME
+    // -----------------------
+    gsap.fromTo(
+      nameRef.current,
+      { textShadow: "0px 0px 0px #3b82f6" },
+      {
+        textShadow: "0px 0px 25px #3b82f6",
+        duration: 3,
+        repeat: -1,
+        yoyo: true,
+        ease: "power1.inOut",
+      }
     );
 
-    // 2️⃣ Initial animation on top
-    const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
-    tl
-    .from(imageRef.current, { x: 100, opacity: 0, duration: 0.3 })
-    .from("h1", { x: -50, opacity: 0, duration: 1 })
-      .to(pRef.current, {
-        duration: 2,
-        text: { value: text, delimiter: "" },
-        ease: "none",
-        delay: 0.3,
-      })
-      .from(buttonRef.current, { y: -50, opacity: 0, duration: 0.8, ease: "bounce.out" })
-      
-  }, bannerRef);
+    // -----------------------
+    // BACKGROUND PARALLAX
+    // -----------------------
+    gsap.to(bannerRef.current, {
+      scrollTrigger: {
+        trigger: bannerRef.current,
+        start: "top top",
+        end: "bottom top",
+        scrub: true,
+      },
+      y: -100,
+      opacity: 0,
+    });
 
-  return () => ctx.revert();
-}, []);
+  }, []);
 
-
-  return (
-    <div>
-      <section ref={bannerRef} className=" h-screen lg:min-h-[600px] flex justify-center align-bottom ">
-        {/* <div className="min-h-[152px]"></div>  */}
-
-        <div
-          ref={BannerContainerRef}
-          className="flex-1 flex flex-row-reverse max-h-[100%] items-end justify-center px-10 pt-[152px]"
+return (
+  <section
+    ref={bannerRef}
+    className="relative h-screen flex flex-row items-center justify-between px-10 md:px-20 overflow-hidden fluid-container"
+  >
+    {/* LEFT CONTENT */}
+    <div className="max-w-3xl relative z-10 text-left md:w-1/2">
+      <h1
+        ref={titleRef}
+        className="text-4xl md:text-6xl font-bold mb-4 text-white leading-tight"
+      >
+        Hi, I’m{" "}
+        <span
+          ref={nameRef}
+          className="text-blue-400 relative inline-block"
         >
-          <div
-            ref={contentRef}
-            className="flex-1 text-left max-w-[500px] xl:max-w-[700px] w-full min-h-full flex items-center align-middle"
-          >
-            <div >
-              <h1 className="text-4xl md:text-6xl font-bold mb-4 text-white">
-                Hi, I’m <span className="text-blue-400">Gururaj HR</span>
-              </h1>
-              <p ref={pRef} className="text-lg md:text-xl text-gray-300 mb-6">
-                {HOME.banner.tagline}
-              </p>
+          Gururaj HR
+        </span>
+      </h1>
 
-              <div ref={buttonRef}>
-                <Button animation="filled" arrow="right" to="/projects">
-                  View Projects
-                </Button>
-              </div>
-            </div>
-          </div>
+      {/* Underline */}
+      <div
+        ref={underlineRef}
+        className="h-[3px] bg-blue-400 mb-6"
+        style={{ width: "140px" }}
+      ></div>
 
-          
-          <div
-            ref={imageRef}
-            className="mt-10 md:mt-0 flex justify-center max-lg:hidden pr-10"
-          >
-            <img
-              src="/my-image.webp"
-              alt="My Portrait"
-              className="w-auto max-h-[80vh] object-contain drop-shadow-lg"
-            />
-          </div>
-        </div>
-      </section>
+      <p
+        ref={taglineRef}
+        className="text-lg md:text-2xl text-gray-300 mb-8 leading-relaxed max-w-xl"
+      >
+        {HOME.banner.tagline}
+      </p>
+
+      <div ref={buttonRef} className="flex">
+        <Button animation="filled" arrow="right" to="/projects">
+          View Projects
+        </Button>
+      </div>
     </div>
-  );
-}
 
-export default Banner;
+    {/* RIGHT SIDE ANIMATION AREA */}
+    <div className="relative flex items-center justify-center md:w-1/2 h-[300px] md:h-full max-md:hidden">
+      
+      {/* BLURRED MOVING GRADIENT BACKGROUND */}
+      <div
+        className="absolute w-[400px] h-[400px] rounded-full bg-gradient-to-br 
+        from-gray-500 via-blue-500 to-white blur-[120px] opacity-40 animate-slow-pulse"
+      ></div>
+
+      {/* FLOATING SHAPES */}
+      <div className="absolute w-24 h-24 rounded-xl bg-gray-500/40 blur-sm animate-float1"></div>
+      <div className="absolute w-16 h-16 rounded-full bg-white/40 blur-sm animate-float2"></div>
+      <div className="absolute w-20 h-20 rounded-2xl bg-blue-500/40 blur-sm animate-float3"></div>
+    </div>
+  </section>
+);
+
+}

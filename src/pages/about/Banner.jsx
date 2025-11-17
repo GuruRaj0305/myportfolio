@@ -3,60 +3,52 @@ import { gsap } from "gsap";
 import { ABOUT } from "../../data";
 
 const AboutBanner = () => {
-  const headingRef = useRef([]);
-  const paragraphRef = useRef([]);
+  const headingRef = useRef(null);
+  const paragraphRef = useRef(null);
   const animationDone = useRef(false);
-
-  const splitTextToWords = (text, refArray) => {
-    refArray.current = [];
-    return text.split(" ").map((word, i) => (
-      <span
-        key={i}
-        className="inline-block mr-2"
-        ref={(el) => el && refArray.current.push(el)}
-      >
-        {word}
-      </span>
-    ));
-  };
 
   useLayoutEffect(() => {
     if (animationDone.current) return;
 
-    const headingWords = headingRef.current;
-    const paragraphWords = paragraphRef.current;
+    const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
-    // Scatter all words initially
-    gsap.set([...headingWords, ...paragraphWords], {
-      opacity: 0,
-      scale: 0,
-      x: () => gsap.utils.random(-300, 300),
-      y: () => gsap.utils.random(-200, 200),
-      rotation: () => gsap.utils.random(-180, 180),
-    });
+    // Animate heading letters individually
+    const headingLetters = headingRef.current.textContent.split("");
+    headingRef.current.innerHTML = headingLetters
+      .map((char) =>
+        char === " "
+          ? `<span class="inline-block w-2">&nbsp;</span>`
+          : `<span class="inline-block opacity-0">${char}</span>`
+      )
+      .join("");
 
-    const tl = gsap.timeline({ delay: 0.3 });
+    const headingSpans = headingRef.current.querySelectorAll("span");
 
-    // Phase 1: Explode in (burst outward quickly)
-    tl.to([...headingWords, ...paragraphWords], {
+    tl.to(headingSpans, {
       opacity: 1,
-      scale: 1.2,
-      duration: 0.4,
-      ease: "back.out(2)",
+      y: 0,
+      rotateX: 0,
+      scale: 1,
+      duration: 0.6,
       stagger: 0.03,
+      from: { y: 50, scale: 0.8, rotateX: -90 },
     });
 
-    // Phase 2: Snap to final position (reassemble)
+    // Animate paragraph
+    const paragraphLines = paragraphRef.current.textContent.split(". ").filter(Boolean);
+    paragraphRef.current.innerHTML = paragraphLines
+      .map((line) => `<p class="opacity-0 mb-4">${line}.</p>`)
+      .join("");
+
+    const paragraphSpans = paragraphRef.current.querySelectorAll("p");
+
     tl.to(
-      [...headingWords, ...paragraphWords],
+      paragraphSpans,
       {
-        x: 0,
+        opacity: 1,
         y: 0,
-        rotation: 0,
-        scale: 1,
-        ease: "elastic.out(1, 0.6)",
-        duration: 1.2,
-        stagger: 0.02,
+        duration: 0.8,
+        stagger: 0.2,
       },
       "-=0.2"
     );
@@ -67,12 +59,18 @@ const AboutBanner = () => {
   return (
     <div className="flex items-center justify-center h-[100vh] bg-transparent overflow-x-hidden">
       <section className="flex flex-col items-center justify-center text-center px-10 max-md:px-6">
-        <h1 className="text-4xl md:text-6xl font-bold mb-6 text-white">
-          {splitTextToWords("About Me", headingRef)}
+        <h1
+          ref={headingRef}
+          className="text-4xl md:text-6xl font-bold mb-6 text-white leading-tight"
+        >
+          About Me
         </h1>
-        <p className="text-gray-300 text-base md:text-lg max-w-3xl leading-relaxed">
-          {splitTextToWords(ABOUT.about, paragraphRef)}
-        </p>
+        <div
+          ref={paragraphRef}
+          className="text-gray-300 text-base md:text-lg max-w-3xl leading-relaxed"
+        >
+          {ABOUT.about}
+        </div>
       </section>
     </div>
   );

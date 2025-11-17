@@ -3,6 +3,8 @@ import { gsap } from "gsap";
 import { TextPlugin } from "gsap/TextPlugin";
 import { useGSAP } from "@gsap/react";
 
+import { Cog, Laptop, Rocket, BrainCircuit, Puzzle, Package } from "lucide-react";
+
 gsap.registerPlugin(TextPlugin);
 
 const SkillsProjectsBanner = () => {
@@ -44,9 +46,9 @@ const SkillsProjectsBanner = () => {
         },
         "-=0.3"
       );
-  }, [headingRef, subHeadingRef, lineRef, iconsRef]);
+  }, []);
 
-  const icons = ["⚙️", "💻", "🚀", "🧠", "🧩", "📦"];
+  const icons = [Cog, Laptop, Rocket, BrainCircuit, Puzzle, Package];
 
   return (
     <section className="min-h-screen flex flex-col justify-center items-center text-center">
@@ -76,13 +78,13 @@ const SkillsProjectsBanner = () => {
 
       {/* Floating Tech Icons */}
       <div className="flex gap-4 sm:gap-6 justify-center flex-wrap">
-        {icons.map((icon, i) => (
+        {icons.map((Icon, i) => (
           <div
             key={i}
             ref={(el) => (iconsRef.current[i] = el)}
             className="text-3xl sm:text-4xl drop-shadow-lg bg-white/10 rounded-2xl p-3 backdrop-blur-md hover:scale-110 transition-transform duration-300"
           >
-            {icon}
+            <Icon size={36} strokeWidth={1.8} color="white" />
           </div>
         ))}
       </div>

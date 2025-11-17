@@ -1,4 +1,3 @@
-import { Box, Button } from "@mui/material";
 import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
 
@@ -17,75 +16,58 @@ function NavButton({
   const [hover, setHover] = useState(false);
   const location = useLocation();
 
-  // Check if this button's URL matches current route
+  // Active route
   const isActive = location.pathname === to;
-
-  // Combine hover + active effect
   const isAnimated = hover || isActive;
 
   return (
-    <Box
-      component="span"
-      sx={{
-        position: "relative",
-        display: "inline-block",
-      }}
+    <span
+      className="relative inline-block"
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
     >
-      <Link to={to} style={{ textDecoration: "none" }}>
-        <Button
-          sx={{
-            position: "relative",
-            zIndex: 2,
+      {/* Button */}
+      <Link to={to} className="no-underline">
+        <button
+          className="
+            relative z-20 px-3 py-1 transition-all duration-300
+            text-sm font-medium
+          "
+          style={{
             color: isActive ? hoverColor : color,
+            transform:
+              isActive && liftOnHover ? "translateY(-3px)" : "translateY(0)",
             backgroundColor,
-            textTransform: "none",
-            borderRadius: borderRadius,
-            overflow: "hidden",
-            transform: isActive && liftOnHover ? "translateY(-3px)" : "none",
-            transition: "color 0.3s ease, transform 0.3s ease",
-            "&:hover": {
-              color: hoverColor,
-              transform: liftOnHover ? "translateY(-3px)" : "none",
-            },
+            borderRadius,
           }}
         >
           {children}
-        </Button>
+        </button>
       </Link>
 
-      {/* Border animation */}
-      <>
-        {/* Top line */}
-        <span
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            width: isAnimated ? "15px" : "0",
-            height: strokeWidth,
-            background: strokeColor,
-            transition: `width ${animationDuration}s ease`,
-            zIndex: 1,
-          }}
-        />
-        {/* Left line */}
-        <span
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            width: strokeWidth,
-            height: isAnimated ? "15px" : "0",
-            background: strokeColor,
-            transition: `height ${animationDuration}s ease`,
-            transitionDelay: isAnimated ? `${animationDuration}s` : "0s",
-            zIndex: 1,
-          }}
-        />
-      </>
-    </Box>
+      {/* Top Border */}
+      <span
+        className="absolute top-0 left-0"
+        style={{
+          width: isAnimated ? "15px" : "0px",
+          height: strokeWidth,
+          background: strokeColor,
+          transition: `width ${animationDuration}s ease`,
+        }}
+      />
+
+      {/* Left Border */}
+      <span
+        className="absolute top-0 left-0"
+        style={{
+          width: strokeWidth,
+          height: isAnimated ? "15px" : "0px",
+          background: strokeColor,
+          transition: `height ${animationDuration}s ease`,
+          transitionDelay: isAnimated ? `${animationDuration}s` : "0s",
+        }}
+      />
+    </span>
   );
 }
 

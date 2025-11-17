@@ -9,6 +9,7 @@ import { lazy, Suspense } from "react";
 import "./App.css";
 import Home from "./pages/home/Index";
 import Layout from "./components/Layout";
+import ProjectDetail from "./pages/skillsProjects/ProjectDetail";
 
 const NotFound = lazy(() => import("./pages/NotFound"));
 const ContactPage = lazy(() => import("./pages/contact/Index"));
@@ -49,6 +50,14 @@ const routeDefinations = createRoutesFromElements(
         element={
           <Suspense fallback={<div>Loading...</div>}>
             <ContactPage />
+          </Suspense>
+        }
+      />
+      <Route
+        path="/project/:id"
+        element={
+          <Suspense fallback={<div>Loading...</div>}>
+            <ProjectDetail />
           </Suspense>
         }
       />

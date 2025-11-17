@@ -48,45 +48,44 @@ function Header() {
   useEffect(() => {
     if (!menuRef.current) return;
 
-    // Hamburger to X animation
     if (menuOpen) {
-
-      // Reset links text
-      linksRef.current.forEach((link) => {
-        link.innerText = "";
-      });
+      // Reset
+      linksRef.current.forEach((link) => (link.innerText = ""));
 
       gsap.to(line1Ref.current, { rotate: 45, y: 8, duration: 0.3 });
       gsap.to(line2Ref.current, { opacity: 0, duration: 0.3 });
       gsap.to(line3Ref.current, { rotate: -45, y: -8, duration: 0.3 });
 
-      // Slide menu in
       gsap.to(menuRef.current, { x: 0, duration: 0.5, ease: "power3.out" });
 
-      // Typing effect for links sequentially
+      // Fade/slide in links instantly (no typing)
       linksRef.current.forEach((link, i) => {
-        gsap.to(link, {
-          duration: 0.4,
-          delay: i * 0.4,
-          text: mobileLinks[i].text,
-          ease: "none",
-        });
+        link.innerText = mobileLinks[i].text;
+
+        gsap.fromTo(
+          link,
+          { opacity: 0, x: -20 },
+          {
+            opacity: 1,
+            x: 0,
+            duration: 0.4,
+            delay: i * 0.1,
+            ease: "power2.out",
+          }
+        );
       });
+
     } else {
-      // X back to hamburger
       gsap.to(line1Ref.current, { rotate: 0, y: 0, duration: 0.3 });
       gsap.to(line2Ref.current, { opacity: 1, duration: 0.3 });
       gsap.to(line3Ref.current, { rotate: 0, y: 0, duration: 0.3 });
 
-      // Slide menu out
       gsap.to(menuRef.current, { x: "100%", duration: 0.5, ease: "power3.in" });
 
-      // Reset links text
-      linksRef.current.forEach((link) => {
-        link.innerText = "";
-      });
+      linksRef.current.forEach((link) => (link.innerText = ""));
     }
   }, [menuOpen]);
+
 
   return (
     <>

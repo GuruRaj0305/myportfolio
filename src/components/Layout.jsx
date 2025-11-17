@@ -10,14 +10,10 @@ export default function Layout() {
 
   return (
     <>
-        
-        <CustomCursor />
-        <ScrollToTop />
-       
         <Header />
         <Outlet /> 
-           
-         
+        <CustomCursor />
+        <ScrollToTop />     
     </>
   );
 }

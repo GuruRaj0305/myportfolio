@@ -2,7 +2,6 @@ import { useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { PROJECTS } from "../../data";
-import ProjectDetailDialog from "./ProjectDetailDialog";
 import { useGSAP } from "@gsap/react";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -10,8 +9,6 @@ gsap.registerPlugin(ScrollTrigger);
 const ProjectsShowcase = () => {
   const containerRef = useRef(null);
   const projectRefs = useRef([]);
-  const dialogRef = useRef(null);
-  const [selectedProject, setSelectedProject] = useState(null);
 
   const projects = Object.values(PROJECTS);
 
@@ -59,7 +56,9 @@ const ProjectsShowcase = () => {
           <div
             key={i}
             ref={(el) => (projectRefs.current[i] = el)}
-            onClick={() => setSelectedProject(project)}
+            onClick={() =>
+              window.open(`/project/${project.slug}`, "_blank")
+            }
             className="cursor-pointer bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-md shadow-lg hover:shadow-cyan-500/20 transition-all duration-300"
           >
             <h3 className="text-2xl sm:text-3xl font-semibold text-cyan-400 mb-2">
@@ -80,13 +79,6 @@ const ProjectsShowcase = () => {
           </div>
         ))}
       </div>
-
-      {/* The reusable dialog */}
-      <ProjectDetailDialog
-        dialogRef={dialogRef}
-        selectedProject={selectedProject}
-        setSelectedProject={setSelectedProject}
-      />
     </section>
   );
 };
