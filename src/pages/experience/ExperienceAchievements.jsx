@@ -80,7 +80,7 @@ const ExperienceAchievements = () => {
 
             {/* Card content */}
             <div className="flex items-start gap-3 relative z-10 pl-4">
-              <span className="mt-1 w-3 h-3 rounded-full bg-[#51a2ff] shadow-[0_0_10px_#51a2ff] flex-shrink-0" />
+              <span className="mt-2 w-3 h-3 rounded-full bg-[#51a2ff] shadow-[0_0_10px_#51a2ff] flex-shrink-0" />
               <p className="text-lg text-gray-200 leading-relaxed">{item}</p>
             </div>
           </div>
