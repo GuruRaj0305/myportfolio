@@ -36,28 +36,35 @@ export default function Banner() {
     const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
     tl.from(titleRef.current, {
-      y: 40,
-      opacity: 0,
-      duration: 0.8,
-    })
-      .from(nameRef.current, {
-        opacity: 0,
-        y: 20,
-        duration: 0.8,
-      })
-      .from(underlineRef.current, {
-        width: 0,
-        duration: 1,
-      })
-      .to(taglineRef.current, {
-        duration: 2,
-        text: { value: fullText, delimiter: "" },
-      })
-      .from(buttonRef.current, {
-        scale: 0.8,
-        opacity: 0,
-        duration: 0.6,
-      });
+  y: 40,
+  opacity: 0,
+  duration: 1,
+  
+}, "start")
+
+.from(nameRef.current, {
+  opacity: 0,
+  y: 20,
+  duration: 1,
+}, "start")
+
+.from(underlineRef.current, {
+  width: 0,
+  duration: 1,
+}, "start+=0.3")
+
+.to(taglineRef.current, {
+  duration: 1,
+  text: { value: fullText, delimiter: "" },
+}, "start+=0.5")
+
+.from(buttonRef.current, {
+  scale: 1,
+  opacity: 0,
+  duration: 1,
+  ease: "bounce.inOut",
+}, "start+=0.7");
+
 
     // -----------------------
     // FLOATING TITLE EFFECT
@@ -71,7 +78,7 @@ export default function Banner() {
       { textShadow: "0px 0px 0px #3b82f6" },
       {
         textShadow: "0px 0px 25px #3b82f6",
-        duration: 3,
+        duration: 1,
         repeat: -1,
         yoyo: true,
         ease: "power1.inOut",

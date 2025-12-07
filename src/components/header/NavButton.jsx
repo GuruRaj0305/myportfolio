@@ -6,8 +6,7 @@ function NavButton({
   to = "#",
   strokeColor = "#51a2ff",
   strokeWidth = 2,
-  animationDuration = 0.2,
-  borderRadius = 0,
+  animationDuration = 0.3,
   hoverColor = "#51a2ff",
   color = "#51a2ff",
   liftOnHover = true,
@@ -16,7 +15,6 @@ function NavButton({
   const [hover, setHover] = useState(false);
   const location = useLocation();
 
-  // Active route
   const isActive = location.pathname === to;
   const isAnimated = hover || isActive;
 
@@ -26,45 +24,27 @@ function NavButton({
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
     >
-      {/* Button */}
       <Link to={to} className="no-underline">
         <button
-          className="
-            relative z-20 px-3 py-1 transition-all duration-300
-            text-sm font-medium
-          "
+          className="relative z-20 py-1 transition-all duration-300 text-sm font-medium"
           style={{
             color: isActive ? hoverColor : color,
-            transform:
-              isActive && liftOnHover ? "translateY(-3px)" : "translateY(0)",
+            transform: isAnimated && liftOnHover ? "translateY(-3px)" : "translateY(0)",
             backgroundColor,
-            borderRadius,
           }}
         >
           {children}
         </button>
       </Link>
 
-      {/* Top Border */}
+      {/* Underline animation */}
       <span
-        className="absolute top-0 left-0"
+        className="absolute left-0 bottom-0"
         style={{
-          width: isAnimated ? "15px" : "0px",
+          width: isAnimated ? "100%" : "0%",
           height: strokeWidth,
           background: strokeColor,
           transition: `width ${animationDuration}s ease`,
-        }}
-      />
-
-      {/* Left Border */}
-      <span
-        className="absolute top-0 left-0"
-        style={{
-          width: strokeWidth,
-          height: isAnimated ? "15px" : "0px",
-          background: strokeColor,
-          transition: `height ${animationDuration}s ease`,
-          transitionDelay: isAnimated ? `${animationDuration}s` : "0s",
         }}
       />
     </span>

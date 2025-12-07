@@ -49,11 +49,11 @@ function Home() {
                 <div className="w-full flex flex-col ">
                   <Banner />
                 </div>
-                <WanderingOrb>
+                {/* <WanderingOrb> */}
                 <About ref={aboutRef} /> 
                 <Highlights aboutRef={aboutRef} /> 
                 <FeaturedProjects />
-                </WanderingOrb>
+                {/* </WanderingOrb> */}
                 <div className="flex justify-center align-middle max-md:flex-col ">
                   <CallToAction />
                   <div className="my-auto ">

@@ -106,7 +106,6 @@ function Highlights({ aboutRef }) {
                 className="
     group relative block bg-gray-800 rounded-2xl 
     shadow-lg p-6 text-center 
-    transition-all duration-300
     transform-gpu
     perspective-1000
   "

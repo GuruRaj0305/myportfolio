@@ -78,8 +78,9 @@ const ExperienceBanner = () => {
         development to full-stack web engineering and SaaS product building.
       </p>
 
-      <div ref={buttonRef}>
+      <div ref={buttonRef} >
         <LaserButton targetBlank={true} to="/resume_gururaj.pdf" >Resume</LaserButton>
+        <LaserButton targetBlank={true} to="/professional_profile_gururaj.pdf" >Professional Profile</LaserButton>
       </div>
     </section>
   );

@@ -24,7 +24,6 @@ export const ABOUT = {
   ],
 }
 
-
 export const EXPERIENCE = {
   timeline: [
     {
@@ -49,11 +48,6 @@ export const EXPERIENCE = {
   ],
   resumeLink: "#", // replace with actual resume link
 };
-
-const getKey = {
-  "multi-tenant-architecture" : ""
-};
-
 
 export const PROJECTS = {
   "multi-tenant-architecture": {
@@ -90,8 +84,8 @@ export const PROJECTS = {
       "Reduced onboarding time for new tenants and simplified integration of additional applications, supporting rapid platform growth.",
     ],
     images: [
-      project1,
-      project1,
+      // project1,
+      // project1,
     ],
     links: {
       caseStudy: "/projects/saas-pms",
@@ -133,8 +127,8 @@ export const PROJECTS = {
       "Reduced project tracking overhead and improved overall team productivity.",
     ],
     images: [
-      project1,
-      project1,
+      // project1,
+      // project1,
     ],
     links: {
       caseStudy: "/projects/saas-pms",
@@ -200,7 +194,6 @@ export const SKILLS = {
   architectures: ['Multi-tenant Architecture', 'Monolithic Architecture', 'Microservices'],
   tools: ['GSAP', 'Core Web Vitals (PageSpeed)', 'Git', 'Keycloak'],
 }
-
 
 export const HOME = {
   banner : {
