@@ -177,7 +177,7 @@ export const PROJECTS = {
     ],
     links: {
       caseStudy: "/projects/saas-pms",
-      demo: null, // or a URL if available
+      demo: "https://snhrc.swaragh.org.in/", // or a URL if available
       repo: null, // keep null if private
     },
   },

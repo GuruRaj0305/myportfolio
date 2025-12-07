@@ -49,11 +49,11 @@ const AboutWhatsNext = () => {
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.08),transparent_70%)] pointer-events-none"></div>
 
       <div className="max-w-4xl mx-auto relative z-10">
-        <h2 className="text-4xl md:text-5xl font-bold text-white mb-12 tracking-wide">
+        <h2 className="text-4xl md:text-5xl font-bold text-white tracking-wide">
           What’s Next
         </h2>
 
-        <p className="text-gray-400 text-lg mb-10 max-w-3xl mx-auto">
+        <p className="text-gray-400 text-lg max-w-3xl mx-auto">
           I believe growth never stops. Here’s what I’m focusing on next in my journey:
         </p>
 

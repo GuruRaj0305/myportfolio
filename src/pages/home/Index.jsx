@@ -38,7 +38,7 @@ function Home() {
   return (
     <>
      
-        <ScrollFalling>
+        {/* <ScrollFalling> */}
           <div className="relative w-full h-full">
             {/* Blurred background layer */}
             <TypingBackgroundText key={Math.random()}>
@@ -63,7 +63,7 @@ function Home() {
               </div>
             </TypingBackgroundText>
           </div>
-        </ScrollFalling>
+        {/* </ScrollFalling> */}
     </>
   );
 }
