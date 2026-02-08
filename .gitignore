@@ -43,11 +43,11 @@ build/
 .env.production.local
 
 # Firebase cache & config
-# .firebase/
-# .firebaserc
-# firebase-debug.log
-# firebase-debug.*.log
-# .firebase-tools.json
+.firebase/
+.firebaserc
+firebase-debug.log
+firebase-debug.*.log
+.firebase-tools.json
 
 # Vite cache
 .vite/
@@ -99,8 +99,8 @@ jest-html-reporters-*.html
 jest-cache/
 
 # Optional Firebase hosting cache
-.firebase-hosting-cache/
-firebase.json
+# .firebase-hosting-cache/
+# firebase.json
 
 # ==========================================
 # End of .gitignore
