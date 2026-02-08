@@ -147,7 +147,7 @@ import { gsap } from "gsap";
 
 const CustomCursor = () => {
   const dotRef = useRef(null);
-  const ringRef = useRef(null);
+  const ringRef = useRef(null); 
 
   useEffect(() => {
     const dot = dotRef.current;
