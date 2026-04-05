@@ -1,237 +1,85 @@
-// import { useRef } from "react";
-// import { gsap } from "gsap";
-// import { ScrollTrigger } from "gsap/ScrollTrigger";
-// import { PROJECTS } from "../../data";
-// import LaserButton from "../../components/custom/Button";
-// import { useGSAP } from "@gsap/react";
-
-// gsap.registerPlugin(ScrollTrigger);
-
-// const FeaturedProjects = () => {
-//   const sectionRef = useRef(null);
-//   const cardRefs = useRef([]);
-//   const buttonRef = useRef(null);
-  
-//   const projects = Object.values(PROJECTS);
-
-//   useGSAP(() => {
-//       const sectionEl = sectionRef.current;
-//       const cards = cardRefs.current.filter(Boolean);
-//       const buttonEl = buttonRef.current;
-  
-//       if (!sectionEl || cards.length === 0 || !buttonEl) return;
-  
-//       // Cards stagger animation
-//       const cardsTl = gsap.fromTo(
-//         cards,
-//         { y: 100, opacity: 0, scale: 0.85 },
-//         {
-//           y: 0,
-//           opacity: 1,
-//           scale: 1,
-//           duration: 1,
-//           ease: "power3.out",
-//           stagger: 0.2,
-//           scrollTrigger: {
-//             trigger: sectionEl,
-//             start: "top 80%",
-//             toggleActions: "restart none none none",
-//           },
-//         }
-//       );
-  
-//       // Button animation
-//       const buttonTl = gsap.fromTo(
-//         buttonEl,
-//         { opacity: 0, scale: 0.8, y: -50 },
-//         {
-//           opacity: 1,
-//           scale: 1,
-//           y: 0,
-//           duration: 0.8,
-//           ease: "bounce.out",
-//           scrollTrigger: {
-//             trigger: buttonEl,
-//             start: "top 80%",
-//             toggleActions: "play reverse play reverse",
-//           },
-//         }
-//       );
-  
-//       // Cleanup SPA-safe
-//       return () => {
-//         cardsTl.scrollTrigger && cardsTl.scrollTrigger.kill();
-//         cardsTl.kill();
-//         buttonTl.scrollTrigger && buttonTl.scrollTrigger.kill();
-//         buttonTl.kill();
-//       };
-//     }, []);
-
-//   return (
-//     <section
-//       ref={sectionRef}
-//       className="py-16 px-6 md:px-12 lg:px-24 backdrop-blur-sm text-white"
-//     >
-//       <div className="fluid-container">
-//         <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-//           Featured Projects
-//         </h2>
-
-//         {/* Project Grid */}
-//         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-//           {projects.map((project, index) => (
-//             <div
-//   key={index}
-//   ref={(el) => (cardRefs.current[index] = el)}
-//   className="bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300"
-// >
-//   {project.images?.length > 0 ? (
-//     <img
-//       src={project.images[0]}
-//       alt={project.title}
-//       className="w-full h-48 object-cover"
-//     />
-//   ) : (
-//     <div className="w-full h-48 bg-gray-700 flex items-center justify-center text-gray-400 text-sm">
-//       No Image Available
-//     </div>
-//   )}
-
-//   <div className="p-6">
-//     <h3 className="text-xl font-semibold mb-2">{project.name}</h3>
-//     <p className="text-gray-300 text-sm mb-4">{project.tagline}</p>
-//     <a
-//       href={"/project/" + project.slug}
-//       target="_blank"
-//       rel="noopener noreferrer"
-//       className="text-blue-400 hover:text-blue-300 font-medium"
-//     >
-//       View Detail →
-//     </a>
-//   </div>
-// </div>
-
-//           ))}
-//         </div>
-
-//         {/* See All Projects Button */}
-//         <div ref={buttonRef} className="flex justify-center mt-12">
-//           <LaserButton arrow={true} to="/projects">
-//             View Project
-//           </LaserButton>
-//         </div>
-//       </div>
-//     </section>
-//   );
-// };
-
-// export default FeaturedProjects;
-
-
 import { useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { PROJECTS } from "../../data";
-import LaserButton from "../../components/custom/Button";
+import Button from "../../components/custom/Button";
 import { useGSAP } from "@gsap/react";
+import { Link } from "react-router-dom";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const FeaturedProjects = () => {
   const sectionRef = useRef(null);
-  const cardRefs = useRef([]);
-  const buttonRef = useRef(null);
-  
+  const labelRef   = useRef(null);
+  const cardsRef   = useRef([]);
+  const btnRef     = useRef(null);
+
   const projects = Object.values(PROJECTS);
 
   useGSAP(() => {
-    const sectionEl = sectionRef.current;
-    const cards = cardRefs.current.filter(Boolean);
-    const buttonEl = buttonRef.current;
+    const el    = sectionRef.current;
+    const cards = cardsRef.current.filter(Boolean);
+    if (!el || !cards.length) return;
 
-    if (!sectionEl || cards.length === 0 || !buttonEl) return;
+    const tl = gsap.timeline({
+      scrollTrigger: { trigger: el, start: "top 80%", toggleActions: "restart none none none" },
+    });
 
-    const cardsTl = gsap.fromTo(
-      cards,
-      { y: 100, opacity: 0, scale: 0.85 },
-      {
-        y: 0,
-        opacity: 1,
-        scale: 1,
-        duration: 0.3,
-        ease: "power3.out",
-        stagger: 0.2,
-        scrollTrigger: {
-          trigger: sectionEl,
-          start: "top 80%",
-          toggleActions: "restart none none none",
-        },
-      }
-    );
+    tl.from(labelRef.current, { y: 24, opacity: 0, duration: 0.5, ease: "power3.out" })
+      .from(cards, {
+        y: 60, opacity: 0, scale: 0.9,
+        duration: 0.7, ease: "power3.out", stagger: 0.12,
+      }, "-=0.25")
+      .from(btnRef.current, { y: 20, opacity: 0, duration: 0.5, ease: "back.out(1.6)" }, "-=0.2");
 
-    const buttonTl = gsap.fromTo(
-      buttonEl,
-      { opacity: 0, scale: 0.8, y: -50 },
-      {
-        opacity: 1,
-        scale: 1,
-        y: 0,
-        duration: 0.8,
-        ease: "bounce.out",
-        scrollTrigger: {
-          trigger: buttonEl,
-          start: "top 80%",
-          toggleActions: "play reverse play reverse",
-        },
-      }
-    );
-
-    return () => {
-      cardsTl.scrollTrigger && cardsTl.scrollTrigger.kill();
-      cardsTl.kill();
-      buttonTl.scrollTrigger && buttonTl.scrollTrigger.kill();
-      buttonTl.kill();
-    };
+    return () => { tl.scrollTrigger?.kill(); tl.kill(); };
   }, []);
 
   return (
-    <section
-      ref={sectionRef}
-      className="py-16 px-6 md:px-12 lg:px-24 backdrop-blur-sm text-white"
-    >
+    <section ref={sectionRef} className="relative py-24 px-8 md:px-20 text-white">
       <div className="fluid-container">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+        <p ref={labelRef} className="section-eyebrow text-center mb-4">What I&apos;ve Built</p>
+        <h2 className="text-3xl md:text-4xl font-black text-center text-white mb-14">
           Featured Projects
         </h2>
 
-        {/* Project Grid */}
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {projects.map((project, index) => (
             <div
-              key={index}
-              ref={(el) => (cardRefs.current[index] = el)}
-              className="bg-gray-800 rounded-2xl shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 p-6"
+              key={project.slug}
+              ref={(el) => (cardsRef.current[index] = el)}
+              className="project-card"
             >
-              <h3 className="text-xl font-semibold mb-3">{project.name}</h3>
-              <p className="text-gray-300 text-sm mb-4">{project.tagline}</p>
+              {/* Big faded index number */}
+              <span className="project-card-num">
+                {String(index + 1).padStart(2, "0")}
+              </span>
 
-              <a
-                href={"/project/" + project.slug}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-400 hover:text-blue-300 font-medium"
+              {/* Content */}
+              <h3 className="project-card-title">{project.name}</h3>
+              <p className="project-card-tag">{project.tagline}</p>
+
+              {/* Tech chips */}
+              {project.techStack?.length > 0 && (
+                <div className="flex flex-wrap mb-5 mt-1">
+                  {project.techStack.slice(0, 4).map((t) => (
+                    <span key={t} className="tech-chip">{t}</span>
+                  ))}
+                </div>
+              )}
+
+              <Link
+                to={`/project/${project.slug}`}
+                className="project-card-link"
               >
-                View Detail →
-              </a>
+                View Detail <span className="project-card-link-arrow">→</span>
+              </Link>
             </div>
           ))}
         </div>
 
-        {/* See All Projects Button */}
-        <div ref={buttonRef} className="flex justify-center mt-12">
-          <LaserButton arrow={true} to="/projects">
-            View Project
-          </LaserButton>
+        <div ref={btnRef} className="flex justify-center mt-14">
+          <Button arrow="right" to="/projects">View All Projects</Button>
         </div>
       </div>
     </section>

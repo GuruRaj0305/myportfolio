@@ -207,3 +207,353 @@ body.scrolled .header {
 .hov-bg-60:hover {
   background-color: #161616;
 }
+
+/* ================================================================
+   Custom Cursor
+   ================================================================ */
+.cursor-dot,
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 9999;
+  will-change: transform;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* Inner dot — follows mouse exactly */
+.cursor-dot-inner {
+  display: block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #fff;
+  transform: translate(-50%, -50%);
+  mix-blend-mode: difference;
+  transition: transform 0.15s ease;
+}
+
+/* Ring — lerps behind via RAF */
+.cursor-ring-inner {
+  display: block;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, 0.38);
+  transform: translate(-50%, -50%);
+  transition:
+    width 0.22s ease,
+    height 0.22s ease,
+    border-color 0.22s ease,
+    background-color 0.22s ease,
+    transform 0.12s ease;
+}
+
+/* Hover over interactive element */
+.cursor-dot[data-hover="true"] .cursor-dot-inner {
+  transform: translate(-50%, -50%) scale(0);
+}
+.cursor-ring[data-hover="true"] .cursor-ring-inner {
+  width: 52px;
+  height: 52px;
+  border-color: rgba(255, 255, 255, 0.85);
+  background-color: rgba(255, 255, 255, 0.04);
+}
+
+/* Mousedown */
+.cursor-dot[data-click="true"] .cursor-dot-inner {
+  transform: translate(-50%, -50%) scale(0.4);
+}
+.cursor-ring[data-click="true"] .cursor-ring-inner {
+  width: 28px;
+  height: 28px;
+  border-color: #fff;
+}
+
+
+/* ================================================================
+   Banner — name gradient + dot grid + badges + scroll indicator
+   ================================================================ */
+
+.banner-name-gradient {
+  background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 55%, #60a5fa 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: banner-name-shift 5s ease-in-out infinite;
+}
+
+@keyframes banner-name-shift {
+  0%,  100% { background-position: 0% 50%; }
+  50%        { background-position: 100% 50%; }
+}
+
+.banner-dot-grid {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 38px 38px;
+}
+
+/* Code window border glow */
+.code-window-border {
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  box-shadow:
+    0 0 0 1px rgba(59, 130, 246, 0.08),
+    0 25px 60px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+/* Floating tech badges */
+@keyframes badge-float {
+  0%,  100% { transform: translateY(0px);   }
+  50%        { transform: translateY(-10px); }
+}
+.badge-float { animation: badge-float 3.5s ease-in-out infinite; }
+
+.badge-pill {
+  display: inline-block;
+  padding: 5px 13px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-family: ui-monospace, monospace;
+  font-weight: 500;
+  backdrop-filter: blur(6px);
+  white-space: nowrap;
+}
+.badge-blue   { background: rgba(59,  130, 246, 0.14); border: 1px solid rgba(59,  130, 246, 0.35); color: #93c5fd; }
+.badge-green  { background: rgba(34,  197,  94, 0.12); border: 1px solid rgba(34,  197,  94, 0.30); color: #86efac; }
+.badge-purple { background: rgba(168,  85, 247, 0.12); border: 1px solid rgba(168,  85, 247, 0.30); color: #c4b5fd; }
+.badge-orange { background: rgba(249, 115,  22, 0.12); border: 1px solid rgba(249, 115,  22, 0.30); color: #fdba74; }
+
+/* Scroll indicator */
+@keyframes scroll-indicator {
+  0%,  100% { opacity: 0.38; transform: translateX(-50%) translateY(0);   }
+  50%        { opacity: 0.80; transform: translateX(-50%) translateY(8px); }
+}
+.scroll-indicator-anim { animation: scroll-indicator 2.2s ease-in-out infinite; }
+
+
+/* ================================================================
+   Shared Section Utilities
+   ================================================================ */
+.section-eyebrow {
+  display: block;
+  font-family: ui-monospace, monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #60a5fa;
+}
+
+
+/* ================================================================
+   About — stat cards
+   ================================================================ */
+.about-stat-card {
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 18px;
+  padding: 28px 20px;
+  text-align: center;
+  transition: border-color 0.3s ease, background 0.3s ease, transform 0.3s ease;
+  will-change: transform;
+}
+.about-stat-card:hover {
+  background: rgba(59, 130, 246, 0.07);
+  border-color: rgba(59, 130, 246, 0.35);
+  transform: translateY(-4px);
+}
+.about-stat-value {
+  font-size: 2.6rem;
+  font-weight: 800;
+  line-height: 1;
+  margin-bottom: 8px;
+  background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.about-stat-label {
+  font-size: 0.72rem;
+  color: rgba(156, 163, 175, 0.85);
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+}
+
+
+/* ================================================================
+   Highlights — cards with blue left accent
+   ================================================================ */
+.highlight-card {
+  position: relative;
+  display: block;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-left: 3px solid #3b82f6;
+  border-radius: 16px;
+  padding: 30px 26px 30px 26px;
+  overflow: hidden;
+  transition: transform 0.28s ease, background 0.28s ease, box-shadow 0.28s ease;
+  text-decoration: none;
+  color: inherit;
+}
+.highlight-card:hover {
+  transform: translateY(-8px);
+  background: rgba(59, 130, 246, 0.055);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+}
+.highlight-card-icon {
+  font-size: 2.1rem;
+  display: block;
+  margin-bottom: 14px;
+  line-height: 1;
+}
+.highlight-card-name {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 6px;
+}
+.highlight-card-value {
+  font-size: 0.88rem;
+  color: rgba(156, 163, 175, 0.9);
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+.highlight-card-arrow {
+  position: absolute;
+  bottom: 20px;
+  right: 22px;
+  color: #60a5fa;
+  font-size: 1rem;
+  opacity: 0;
+  transform: translateX(-6px);
+  transition: opacity 0.22s ease, transform 0.22s ease;
+}
+.highlight-card:hover .highlight-card-arrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+
+/* ================================================================
+   Projects — numbered dark cards
+   ================================================================ */
+.project-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 18px;
+  padding: 34px 28px 28px;
+  overflow: hidden;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.project-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 18px;
+  background: linear-gradient(135deg, rgba(59,130,246,0.06) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.project-card:hover {
+  transform: translateY(-10px);
+  border-color: rgba(59, 130, 246, 0.45);
+  box-shadow: 0 24px 55px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(59, 130, 246, 0.15);
+}
+.project-card:hover::before { opacity: 1; }
+.project-card-num {
+  position: absolute;
+  top: 12px;
+  right: 18px;
+  font-size: 5rem;
+  font-weight: 900;
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.04);
+  font-family: ui-monospace, monospace;
+  pointer-events: none;
+  user-select: none;
+}
+.project-card-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-card-tag {
+  font-size: 0.85rem;
+  color: rgba(156, 163, 175, 0.85);
+  line-height: 1.6;
+  margin-bottom: 14px;
+}
+.tech-chip {
+  display: inline-block;
+  padding: 3px 11px;
+  border-radius: 999px;
+  font-size: 10px;
+  font-family: ui-monospace, monospace;
+  background: rgba(59, 130, 246, 0.1);
+  border: 1px solid rgba(59, 130, 246, 0.25);
+  color: #93c5fd;
+  margin: 0 5px 5px 0;
+}
+.project-card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #60a5fa;
+  text-decoration: none;
+  transition: gap 0.2s ease, color 0.2s ease;
+}
+.project-card-link:hover { color: #93c5fd; gap: 8px; }
+.project-card-link-arrow { transition: transform 0.2s ease; }
+.project-card-link:hover .project-card-link-arrow { transform: translateX(4px); }
+
+
+/* ================================================================
+   CTA Band
+   ================================================================ */
+.cta-band {
+  position: relative;
+  background: linear-gradient(135deg, rgba(30,30,46,1) 0%, rgba(14,14,22,1) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 24px;
+  overflow: hidden;
+}
+.cta-band::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 0%, rgba(59,130,246,0.12) 0%, transparent 65%);
+  pointer-events: none;
+}
+.cta-accent-line {
+  width: 48px;
+  height: 3px;
+  background: linear-gradient(90deg, #3b82f6, #a78bfa);
+  border-radius: 999px;
+  margin: 0 auto 28px;
+}
+
+
+/* ================================================================
+   Footer
+   ================================================================ */
+.footer-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.08) 50%, transparent 100%);
+}
+.footer-link {
+  font-size: 0.88rem;
+  color: rgba(156, 163, 175, 0.8);
+  text-decoration: none;
+  transition: color 0.2s ease;
+  font-weight: 500;
+}
+.footer-link:hover { color: #60a5fa; }

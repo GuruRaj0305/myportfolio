@@ -196,13 +196,36 @@ export const SKILLS = {
 }
 
 export const HOME = {
-  banner : {
-    tagline : " A passionate Software Developer building modern, scalable applications."
+  banner: {
+    tagline: "A passionate Software Developer building modern, scalable applications.",
+    roles: ["Full Stack Developer", "React & Node.js Engineer", "UI/UX Enthusiast", "Problem Solver"],
+    skills: ["React", "Node.js", "Laravel", "PostgreSQL", "Docker"],
+    badges: [
+      { label: "React",       color: "blue"   },
+      { label: "Node.js",     color: "green"  },
+      { label: "TypeScript",  color: "purple" },
+      { label: "Docker",      color: "orange" },
+    ],
   },
-  about : " I am a passionate software developer with a love for building efficient and scalable applications. I continuously explore new technologies to create innovative solutions and improve user experiences.",
+  about: "I am a passionate software developer with a love for building efficient and scalable applications. I continuously explore new technologies to create innovative solutions and improve user experiences.",
+  aboutStats: [
+    { value: "2+",   label: "Years Experience"   },
+    { value: "10+",  label: "Projects Shipped"   },
+    { value: "5+",   label: "Tech Stacks"        },
+    { value: "100%", label: "Passion for Code"   },
+  ],
   highlights: [
-    {name : "Years of Exerinece", value : "2+ years as Software Developer", link: "/experience"},
-    {name : "Skills", value : "Python, Django, Node JS, Laravel, React, Linux, Nginx", link: "/projects"},
-    {name : "Current Focus", value : "Exploring DevOps & AI", link: "/projects"},
-  ]
+    { icon: "⚡", name: "Experience",     value: "2+ years as Software Developer",                link: "/experience" },
+    { icon: "🛠", name: "Skills",         value: "Python, Node JS, Laravel, React, Linux, Nginx", link: "/projects"   },
+    { icon: "🎯", name: "Current Focus",  value: "Exploring DevOps & AI",                         link: "/projects"   },
+  ],
+  cta: {
+    heading: "Let\u2019s Build Something Great Together",
+    sub: "Open for full-time roles, freelance projects & collaborations.",
+  },
+  social: [
+    { href: "https://github.com/gururaj0305",    label: "GitHub"   },
+    { href: "https://linkedin.com/in/gururajhr", label: "LinkedIn" },
+    { href: "mailto:gururajhr0305l@gmail.com",   label: "Email"    },
+  ],
 };

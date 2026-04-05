@@ -2,94 +2,58 @@ import { useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import { HOME } from "../../data";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const Footer = () => {
   const footerRef = useRef(null);
-  const linksRef = useRef([]);
-  const copyrightRef = useRef(null);
+  const innerRef  = useRef(null);
 
   useGSAP(() => {
-    const links = linksRef.current.filter(Boolean);
+    const el = innerRef.current;
+    if (!el) return;
 
-    // Timeline for links + copyright
-    const tl = gsap.timeline();
-
-    if (links.length) {
-      tl.fromTo(
-        links,
-        { y: 20, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.8,
-          stagger: 0.2,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: footerRef.current,
-            start: "top 90%",
-          },
-        }
-      );
-    }
-
-    if (copyrightRef.current) {
-      tl.fromTo(
-        copyrightRef.current,
-        { y: 10, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.8,
-          delay: 0.2,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: footerRef.current,
-            start: "top 90%",
-          },
-        }
-      );
-    }
-
-    // SPA-safe cleanup
-    return () => {
-      tl.scrollTrigger && tl.scrollTrigger.kill();
-      tl.kill();
-      ScrollTrigger.getAll().forEach((st) => st.kill());
-    };
+    gsap.from(el, {
+      y: 30, opacity: 0, duration: 0.8, ease: "power3.out",
+      scrollTrigger: { trigger: footerRef.current, start: "top 92%" },
+    });
   }, []);
 
-
   return (
-    <footer
-      ref={footerRef}
-      className="text-white py-10 px-6 md:px-12 lg:px-24 text-center "
-    >
-      {/* Links */}
-      <div className="flex justify-center gap-6 mb-4">
-        {[
-          { href: "https://github.com/gururaj0305", text: "GitHub" },
-          { href: "https://linkedin.com/in/gururajhr", text: "LinkedIn" },
-          { href: "mailto:gururajhr0305l@gmail.com", text: "Email" },
-        ].map((link, idx) => (
-          <a
-            key={idx}
-            ref={(el) => (linksRef.current[idx] = el)}
-            href={link.href}
-            target={link.href.startsWith("http") ? "_blank" : undefined}
-            rel="noopener noreferrer"
-            className="hover:text-blue-400 transition-colors duration-300"
-          >
-            {link.text}
-          </a>
-        ))}
-      </div>
+    <footer ref={footerRef} className="pb-12 px-8 md:px-20 text-white">
+      <div className="fluid-container" ref={innerRef}>
+        {/* Divider */}
+        <div className="footer-divider mb-10" />
 
-      {/* Copyright */}
-      <p ref={copyrightRef} className="text-gray-400 text-sm">
-       <strong> &copy; {new Date().getFullYear()} Gururaj H R. All rights reserved. </strong><br /> Crafted with React, Tailwind CSS, GSAP.
-      </p>
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+          {/* Brand */}
+          <div className="text-center md:text-left">
+            <p className="text-lg font-bold text-white tracking-tight">Gururaj HR</p>
+            <p className="text-gray-500 text-sm mt-1">Building modern web experiences.</p>
+          </div>
+
+          {/* Social links */}
+          <div className="flex items-center gap-8">
+            {HOME.social.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                target={link.href.startsWith("http") ? "_blank" : undefined}
+                rel="noopener noreferrer"
+                className="footer-link"
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
+        </div>
+
+        {/* Copyright */}
+        <p className="text-center text-gray-600 text-xs mt-8 font-mono">
+          &copy; {new Date().getFullYear()} Gururaj H R &nbsp;&middot;&nbsp; Crafted with React &amp; GSAP
+        </p>
+      </div>
     </footer>
   );
 };

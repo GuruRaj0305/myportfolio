@@ -37,35 +37,20 @@ function Home() {
 
   return (
     <>
-     
-        {/* <ScrollFalling> */}
-          <div className="relative w-full h-full">
-            {/* Blurred background layer */}
-            <TypingBackgroundText key={Math.random()}>
-              {/* Foreground content */}
-
-              <div className="relative z-10 ">
-                 
-                <div className="w-full flex flex-col ">
-                  <Banner />
-                </div>
-                {/* <WanderingOrb> */}
-                <About ref={aboutRef} /> 
-                <Highlights aboutRef={aboutRef} /> 
-                <FeaturedProjects />
-                {/* </WanderingOrb> */}
-                <div className="flex justify-center align-middle max-md:flex-col ">
-                  <CallToAction />
-                  <div className="my-auto ">
-                    <Footer />
-                  </div>
-                </div>
-              </div>
-            </TypingBackgroundText>
+      <div className="relative w-full h-full">
+        <TypingBackgroundText key={location.pathname}>
+          <div className="relative z-10">
+            <Banner />
+            <About ref={aboutRef} />
+            <Highlights />
+            <FeaturedProjects />
+            <CallToAction />
+            <Footer />
           </div>
-        {/* </ScrollFalling> */}
+        </TypingBackgroundText>
+      </div>
     </>
-  );
+    );
 }
 
 export default Home;
