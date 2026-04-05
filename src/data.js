@@ -198,13 +198,13 @@ export const SKILLS = {
 export const HOME = {
   banner: {
     tagline: "A passionate Software Developer building modern, scalable applications.",
-    roles: ["Full Stack Developer", "React & Node.js Engineer", "UI/UX Enthusiast", "Problem Solver"],
+    roles: ["Full Stack Developer", "React & Node.js Engineer", "Problem Solver"],
     skills: ["React", "Node.js", "Laravel", "PostgreSQL", "Docker"],
     badges: [
-      { label: "React",       color: "blue"   },
-      { label: "Node.js",     color: "green"  },
-      { label: "TypeScript",  color: "purple" },
-      { label: "Docker",      color: "orange" },
+      { label: "React",    color: "blue"   },
+      { label: "Node.js", color: "green"  },
+      { label: "Docker",  color: "orange" },
+      { label: "Linux",   color: "purple" },
     ],
   },
   about: "I am a passionate software developer with a love for building efficient and scalable applications. I continuously explore new technologies to create innovative solutions and improve user experiences.",
@@ -221,7 +221,7 @@ export const HOME = {
   ],
   cta: {
     heading: "Let\u2019s Build Something Great Together",
-    sub: "Open for full-time roles, freelance projects & collaborations.",
+    sub: "Actively seeking full-time opportunities to build impactful products with great teams.",
   },
   social: [
     { href: "https://github.com/gururaj0305",    label: "GitHub"   },
