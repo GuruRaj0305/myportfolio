@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { PROJECTS } from "../../data";
@@ -59,7 +59,7 @@ const ProjectsShowcase = () => {
             onClick={() =>
               window.open(`/project/${project.slug}`, "_blank")
             }
-            className="cursor-pointer bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-md shadow-lg hover:shadow-cyan-500/20 transition-all duration-300"
+            className="project-blueprint-card cursor-pointer bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-md shadow-lg hover:shadow-cyan-500/20 transition-all duration-300"
           >
             <h3 className="text-2xl sm:text-3xl font-semibold text-cyan-400 mb-2">
               {project.name}

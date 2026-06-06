@@ -18,7 +18,7 @@ export default function ProjectDetail() {
       navigate("/404", { replace: true });
       return null;
     }
-  }, [selectedProject]);
+  }, [navigate, selectedProject]);
 
   // GSAP 🔥 Cinematic Page Reveal Animation
   useEffect(() => {
@@ -83,11 +83,11 @@ export default function ProjectDetail() {
   return (
     <>
       {selectedProject && (
-        <div className="relative">
+        <div className="editorial-page project-detail-editorial-page relative">
           {/* Curtain reveal */}
           <div
             ref={revealRef}
-            className="fixed top-0 left-0 w-full h-full bg-gray-900 z-40 pointer-events-none"
+            className="fixed top-0 left-0 w-full h-full bg-[var(--color-background)] z-40 pointer-events-none"
           />
 
           {/* Main Content */}
@@ -97,8 +97,8 @@ export default function ProjectDetail() {
           >
             <div className="fluid-container max-w-5xl mx-auto">
               {/* Title + Description */}
-              <div className="mb-10">
-                <h1 className="text-5xl font-extrabold text-cyan-400 mb-6 drop-shadow-lg">
+              <section className="project-detail-hero mb-10">
+                <h1 className="text-5xl font-extrabold text-[var(--color-accent)] mb-6">
                   {selectedProject.name}
                 </h1>
 
@@ -118,7 +118,7 @@ export default function ProjectDetail() {
                     </LaserButton>
                   </div>
                 )}
-              </div>
+              </section>
 
               {/* Sections */}
               {[

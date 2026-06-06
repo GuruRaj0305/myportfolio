@@ -63,7 +63,7 @@ const SkillsGrid = () => {
           <div
             key={i}
             ref={(el) => (categoryRefs.current[i] = el)}
-            className="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-md shadow-lg hover:shadow-cyan-500/20 transition-all duration-300"
+            className="project-blueprint-card bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-md shadow-lg hover:shadow-cyan-500/20 transition-all duration-300"
           >
             <h3 className="text-2xl font-semibold text-cyan-400 mb-4 text-center">
               {category.title}

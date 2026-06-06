@@ -186,7 +186,7 @@ const ContactPage = () => {
   return (
     <section
       ref={containerRef}
-      className="relative flex flex-col items-center justify-center h-screen px-6 text-center text-white overflow-hidden"
+      className="editorial-single-page contact-editorial-page relative flex flex-col items-center justify-center h-screen px-6 text-center text-white overflow-hidden"
     >
       {/* Canvas (behind content) */}
       <canvas
@@ -195,7 +195,7 @@ const ContactPage = () => {
       />
 
       {/* Content */}
-      <div className="relative z-10 max-w-3xl mx-auto">
+      <div className="editorial-single-content relative z-10 max-w-3xl mx-auto">
         <h1 className="text-4xl md:text-6xl font-extrabold mb-6 tracking-tight">
           Let’s <span className="text-blue-400">Connect</span>
         </h1>

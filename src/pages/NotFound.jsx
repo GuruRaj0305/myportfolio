@@ -61,7 +61,7 @@ const NotFound = () => {
     <>
       <div
         ref={containerRef}
-        className="relative flex flex-col justify-center items-center w-full h-screen overflow-hidden"
+        className="editorial-single-page not-found-editorial-page relative flex flex-col justify-center items-center w-full h-screen overflow-hidden"
       >
         {/* Neon Glass Frame */}
 
@@ -70,7 +70,7 @@ const NotFound = () => {
           ref={imageRef}
           src="/notfoundImage.webp"
           alt="404"
-          className="max-h-[90vh] w-auto object-contain rounded-2xl m-auto max-w-[90vw]"
+          className="not-found-image max-h-[78vh] w-auto object-contain rounded-2xl m-auto max-w-[82vw]"
           style={{
             pointerEvents: "none",
             boxShadow: "0 0 60px rgba(var(--color-accent-rgb), 0.8)",
