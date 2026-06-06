@@ -40,7 +40,7 @@ const AboutStrengths = () => {
       className="relative py-28 px-6 md:px-16 overflow-hidden"
     >
       {/* Background lighting */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.05),transparent_75%)] pointer-events-none"></div>
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(var(--color-accent-rgb),0.05),transparent_75%)] pointer-events-none"></div>
 
       <div className="max-w-6xl mx-auto text-center relative z-10">
         <h2 className="text-4xl md:text-5xl font-bold text-white mb-16 tracking-wide">
@@ -51,7 +51,7 @@ const AboutStrengths = () => {
           {Object.entries(strengths).map(([key, value], index) => (
             <div
               key={index}
-              className="strength-card group bg-gray-800/40 backdrop-blur-lg border border-gray-700/40 rounded-2xl p-8 text-left shadow-[0_0_30px_rgba(0,0,0,0.4)] hover:shadow-[0_0_40px_rgba(59,130,246,0.4)] transition-all duration-500 transform hover:-translate-y-2 hover:rotate-1"
+              className="strength-card group bg-gray-800/40 backdrop-blur-lg border border-gray-700/40 rounded-2xl p-8 text-left shadow-[0_0_30px_rgba(0,0,0,0.4)] hover:shadow-[0_0_40px_rgba(var(--color-accent-rgb),0.4)] transition-all duration-500 transform hover:-translate-y-2 hover:rotate-1"
             >
               <h3 className="text-xl font-semibold text-blue-400 mb-3 capitalize">
                 {key.replace(/([A-Z])/g, " $1")}

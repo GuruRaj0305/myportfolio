@@ -4,11 +4,11 @@ import { useState } from "react";
 function NavButton({
   children,
   to = "#",
-  strokeColor = "#51a2ff",
+  strokeColor = "var(--color-accent)",
   strokeWidth = 2,
   animationDuration = 0.3,
-  hoverColor = "#51a2ff",
-  color = "#51a2ff",
+  hoverColor = "var(--color-text)",
+  color = "var(--color-accent)",
   liftOnHover = true,
   backgroundColor = "transparent",
 }) {

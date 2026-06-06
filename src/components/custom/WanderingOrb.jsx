@@ -154,7 +154,7 @@ const WanderingOrb = ({ children }) => {
         className={`fixed top-0 left-0 w-20 h-20 rounded-full pointer-events-none z-10 max-md:hidden`}
         style={{
           background:
-            "radial-gradient(circle at 40% 40%, #00f0ff, #0088cc, transparent)",
+            "radial-gradient(circle at 40% 40%, var(--color-text), var(--color-accent), transparent)",
           filter: "blur(6px)",
         }}
       ></div>

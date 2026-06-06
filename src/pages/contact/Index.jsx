@@ -18,8 +18,8 @@ const ContactPage = () => {
       link.addEventListener("mouseenter", () => {
         gsap.to(link, {
           scale: 1.15,
-          color: "#60a5fa", // Tailwind's blue-400
-          textShadow: "0px 0px 10px #60a5fa",
+          color: "var(--color-accent)",
+          textShadow: "0px 0px 10px var(--color-accent)",
           duration: 0.3,
           ease: "power2.out",
         });
@@ -29,7 +29,7 @@ const ContactPage = () => {
       link.addEventListener("mouseleave", () => {
         gsap.to(link, {
           scale: 1,
-          color: "#d1d5db", // gray-300
+          color: "var(--color-muted)",
           textShadow: "0px 0px 0px transparent",
           duration: 0.3,
           ease: "power2.inOut",
@@ -88,6 +88,9 @@ const ContactPage = () => {
     // --- SPACE PARTICLES + SHOOTING STARS ---
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d");
+    const rootStyles = getComputedStyle(document.documentElement);
+    const textRgb = rootStyles.getPropertyValue("--color-text-rgb").trim();
+    const accentRgb = rootStyles.getPropertyValue("--color-accent-rgb").trim();
     const stars = [];
     const shootingStars = [];
 
@@ -141,7 +144,7 @@ const ContactPage = () => {
 
         ctx.beginPath();
         ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(200,220,255,${s.alpha})`;
+        ctx.fillStyle = `rgba(${textRgb},${s.alpha})`;
         ctx.fill();
       }
 
@@ -158,8 +161,8 @@ const ContactPage = () => {
           s.x + s.len,
           s.y - s.len * 0.4
         );
-        grad.addColorStop(0, `rgba(180,220,255,${s.alpha})`);
-        grad.addColorStop(1, "rgba(255,255,255,0)");
+        grad.addColorStop(0, `rgba(${accentRgb},${s.alpha})`);
+        grad.addColorStop(1, `rgba(${textRgb},0)`);
 
         ctx.beginPath();
         ctx.moveTo(s.x, s.y);

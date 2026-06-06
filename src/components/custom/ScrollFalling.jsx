@@ -49,7 +49,11 @@ const ScrollFalling = ( {children} ) => {
   };
 
   const randomColor = () =>
-    gsap.utils.random(["#ffffff", "#b3e5fc", "#cce7ff", "#e0f7ff"]);
+    gsap.utils.random([
+      "var(--color-text)",
+      "var(--color-accent)",
+      "var(--color-muted)",
+    ]);
 
   useGSAP(() => {
     // cleanup any old triggers before creating new ones
@@ -128,6 +132,5 @@ const ScrollFalling = ( {children} ) => {
 };
 
 export default ScrollFalling;
-
 
 

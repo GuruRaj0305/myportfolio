@@ -1,9 +1,55 @@
 @import "tailwindcss";
 
 :root {
-  --blue: #51a2ff;
-  --dark: #000000;
-  --gray: #bbbbbb;
+  /* Application palette: change these four values to retheme the site. */
+  --color-background: #30364f;
+  --color-muted: #acbac4;
+  --color-accent: #e1d9bc;
+  --color-text: #f0f0db;
+
+  --color-background-rgb: 48, 54, 79;
+  --color-muted-rgb: 172, 186, 196;
+  --color-accent-rgb: 225, 217, 188;
+  --color-text-rgb: 240, 240, 219;
+
+  --color-surface: color-mix(in srgb, var(--color-background) 82%, black);
+  --color-surface-soft: color-mix(in srgb, var(--color-background) 72%, transparent);
+  --color-border: rgba(var(--color-muted-rgb), 0.2);
+  --color-border-strong: rgba(var(--color-accent-rgb), 0.5);
+  --color-glow: rgba(var(--color-accent-rgb), 0.28);
+
+  /* Map existing Tailwind color utilities to the application palette. */
+  --color-white: var(--color-text);
+  --color-black: var(--color-background);
+  --color-blue-300: var(--color-accent);
+  --color-blue-400: var(--color-accent);
+  --color-blue-500: var(--color-accent);
+  --color-cyan-300: var(--color-accent);
+  --color-cyan-400: var(--color-accent);
+  --color-cyan-500: var(--color-accent);
+  --color-sky-400: var(--color-accent);
+  --color-purple-400: var(--color-muted);
+  --color-purple-500: var(--color-muted);
+  --color-emerald-300: var(--color-accent);
+  --color-green-300: var(--color-accent);
+  --color-green-400: var(--color-accent);
+  --color-amber-300: var(--color-text);
+  --color-orange-400: var(--color-accent);
+  --color-gray-100: var(--color-text);
+  --color-gray-200: var(--color-text);
+  --color-gray-300: var(--color-muted);
+  --color-gray-400: var(--color-muted);
+  --color-gray-500: color-mix(in srgb, var(--color-muted) 75%, transparent);
+  --color-gray-600: color-mix(in srgb, var(--color-muted) 58%, transparent);
+  --color-gray-700: color-mix(in srgb, var(--color-background) 72%, black);
+  --color-gray-800: color-mix(in srgb, var(--color-background) 82%, black);
+  --color-gray-900: color-mix(in srgb, var(--color-background) 90%, black);
+  --color-gray-950: color-mix(in srgb, var(--color-background) 95%, black);
+
+  /* Backward-compatible component tokens. */
+  --blue: var(--color-accent);
+  --dark: var(--color-background);
+  --gray: var(--color-muted);
 }
 
 .download-button {
@@ -22,7 +68,7 @@
 }
 
 .download-button:hover {
-  color: #fff; /* text white on hover */
+  color: var(--color-background);
   background: var(--blue); /* blue background on hover */
 }
 
@@ -50,7 +96,7 @@
 
 .validate {
   font-size: 13px;
-  color: #fff; /* text white for checkmark */
+  color: var(--color-background);
   background: var(--blue); /* blue background on validate */
 }
 
@@ -67,7 +113,7 @@
 .floating-shape {
   width: 120px;
   height: 120px;
-  background: linear-gradient(135deg, #ff6ec7, #00f2fe);
+  background: linear-gradient(135deg, var(--color-accent), var(--color-muted));
   border-radius: 50%;
   position: absolute;
   opacity: 0.4;

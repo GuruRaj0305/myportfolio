@@ -39,7 +39,7 @@ const AboutPersonalSide = () => {
       className="relative py-24 px-6 md:px-16 text-center overflow-hidden"
     >
       {/* Subtle background lighting */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(147,197,253,0.06),transparent_75%)] pointer-events-none"></div>
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(var(--color-accent-rgb),0.06),transparent_75%)] pointer-events-none"></div>
 
       <div className="max-w-4xl mx-auto relative z-10">
         <h2 className="text-4xl md:text-5xl font-bold text-white mb-14 tracking-wide">
@@ -55,7 +55,7 @@ const AboutPersonalSide = () => {
           {ABOUT.personalSide.map((item, index) => (
             <li
               key={index}
-              className="personal-item bg-gray-800/40 backdrop-blur-lg border border-gray-700/40 rounded-xl p-5 text-gray-300 text-lg shadow-[0_0_20px_rgba(0,0,0,0.4)] hover:shadow-[0_0_30px_rgba(59,130,246,0.4)] hover:text-blue-300 transition-all duration-500 transform hover:-translate-y-1"
+              className="personal-item bg-gray-800/40 backdrop-blur-lg border border-gray-700/40 rounded-xl p-5 text-gray-300 text-lg shadow-[0_0_20px_rgba(0,0,0,0.4)] hover:shadow-[0_0_30px_rgba(var(--color-accent-rgb),0.4)] hover:text-blue-300 transition-all duration-500 transform hover:-translate-y-1"
             >
               ✦ {item}
             </li>

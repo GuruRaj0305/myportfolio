@@ -32,7 +32,7 @@ const ExperienceTimeline = () => {
     );
 
     //Cards entrance animation
-    cards.forEach((card, i) => {
+    cards.forEach((card) => {
       const dot = card.querySelector(".timeline-dot");
 
       const tl = gsap.timeline({
@@ -64,7 +64,7 @@ const ExperienceTimeline = () => {
       ).to(
         dot,
         {
-          boxShadow: "0 0 25px rgba(81,162,255,0.9), 0 0 50px rgba(81,162,255,0.6)",
+          boxShadow: "0 0 25px rgba(var(--color-accent-rgb),0.9), 0 0 50px rgba(var(--color-accent-rgb),0.6)",
           scale: 1.3,
           duration: 0.9,
           yoyo: true,
@@ -84,7 +84,7 @@ const ExperienceTimeline = () => {
       className="relative py-24 px-6 bg-black/30 text-gray-200 overflow-hidden"
     >
       {/* Section Heading */}
-      <h3 className="text-4xl sm:text-5xl font-bold text-center mb-16 text-[#51a2ff] drop-shadow-[0_0_15px_rgba(81,162,255,0.4)]">
+      <h3 className="text-4xl sm:text-5xl font-bold text-center mb-16 text-[var(--color-accent)] drop-shadow-[0_0_15px_rgba(var(--color-accent-rgb),0.4)]">
         Professional Journey
       </h3>
 
@@ -93,14 +93,14 @@ const ExperienceTimeline = () => {
         {/* Main timeline line */}
         <div
           ref={lineRef}
-          className="absolute left-0 top-0 w-[2px] h-full bg-gradient-to-b from-[#51a2ff] via-[#51a2ffcc] to-transparent origin-top"
+          className="absolute left-0 top-0 w-[2px] h-full bg-gradient-to-b from-[var(--color-accent)] via-[rgba(var(--color-accent-rgb),0.8)] to-transparent origin-top"
         />
 
         {EXPERIENCE.timeline.map((exp, idx) => (
           <div key={idx} className="timeline-card relative pl-8">
             {/* Glowing dot */}
             <span
-              className="timeline-dot absolute left-[-1.1rem] top-2 w-4 h-4 rounded-full bg-[#51a2ff] shadow-[0_0_15px_rgba(81,162,255,0.7)]"
+              className="timeline-dot absolute left-[-1.1rem] top-2 w-4 h-4 rounded-full bg-[var(--color-accent)] shadow-[0_0_15px_rgba(var(--color-accent-rgb),0.7)]"
             ></span>
 
             {/* Card Content */}
@@ -108,7 +108,7 @@ const ExperienceTimeline = () => {
               <h4 className="text-2xl font-semibold text-white mb-1">
                 {exp.company}
               </h4>
-              <p className="text-[#51a2ff] font-medium mb-2">{exp.role}</p>
+              <p className="text-[var(--color-accent)] font-medium mb-2">{exp.role}</p>
               <p className="text-gray-400 text-sm italic mb-3">
                 {exp.time?.[0]} — {exp.time?.[1]}
               </p>
@@ -119,7 +119,7 @@ const ExperienceTimeline = () => {
                 {exp.technologies.map((tech, i) => (
                   <span
                     key={i}
-                    className="text-sm bg-[#51a2ff]/10 border border-[#51a2ff]/40 px-3 py-1 rounded-full text-[#51a2ff]"
+                    className="text-sm bg-[rgba(var(--color-accent-rgb),0.1)] border border-[rgba(var(--color-accent-rgb),0.4)] px-3 py-1 rounded-full text-[var(--color-accent)]"
                   >
                     {tech}
                   </span>

@@ -29,8 +29,8 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           {/* Brand */}
           <div className="text-center md:text-left">
-            <p className="text-lg font-bold text-white tracking-tight">Gururaj HR</p>
-            <p className="text-gray-500 text-sm mt-1">Building modern web experiences.</p>
+            <p className="text-lg font-bold text-white tracking-tight">{HOME.footer.brand}</p>
+            <p className="text-gray-500 text-sm mt-1">{HOME.footer.tagline}</p>
           </div>
 
           {/* Social links */}
@@ -51,7 +51,7 @@ const Footer = () => {
 
         {/* Copyright */}
         <p className="text-center text-gray-600 text-xs mt-8 font-mono">
-          &copy; {new Date().getFullYear()} Gururaj H R &nbsp;&middot;&nbsp; Crafted with React &amp; GSAP
+          &copy; {new Date().getFullYear()} {HOME.footer.copyrightName} &nbsp;&middot;&nbsp; {HOME.footer.builtWith}
         </p>
       </div>
     </footer>

@@ -9,7 +9,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 function Highlights() {
   const sectionRef = useRef(null);
-  const labelRef   = useRef(null);
+  const headingRef = useRef(null);
   const cardsRef   = useRef([]);
 
   useGSAP(() => {
@@ -21,7 +21,7 @@ function Highlights() {
       scrollTrigger: { trigger: el, start: "top 80%", toggleActions: "restart none none reverse" },
     });
 
-    tl.from(labelRef.current, { y: 24, opacity: 0, duration: 0.5, ease: "power3.out" })
+    tl.from(headingRef.current, { y: 24, opacity: 0, duration: 0.5, ease: "power3.out" })
       .from(cards, {
         y: 50, opacity: 0, scale: 0.95,
         duration: 0.65, ease: "power3.out", stagger: 0.14,
@@ -31,15 +31,14 @@ function Highlights() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative py-24 px-8 md:px-20 text-white">
+    <section ref={sectionRef} className="home-section relative py-16 md:py-20 px-8 md:px-20 text-white">
       <div className="fluid-container">
-        <p ref={labelRef} className="section-eyebrow text-center mb-4">Quick Glance</p>
-        <h2 className="text-3xl md:text-4xl font-black text-center text-white mb-14">
-          Highlights
+        <h2 ref={headingRef} className="section-heading mb-8 md:mb-10">
+          {HOME.highlights.heading}
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-          {HOME.highlights.map((item, i) => (
+          {HOME.highlights.items.map((item, i) => (
             <Link
               to={item.link}
               key={item.name}
@@ -49,7 +48,7 @@ function Highlights() {
               <span className="highlight-card-icon">{item.icon}</span>
               <h3 className="highlight-card-name">{item.name}</h3>
               <p className="highlight-card-value">{item.value}</p>
-              <span className="highlight-card-arrow">→</span>
+              <span className="highlight-card-arrow">{HOME.highlights.arrow}</span>
             </Link>
           ))}
         </div>

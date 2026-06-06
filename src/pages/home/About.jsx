@@ -8,8 +8,8 @@ import { HOME } from "../../data";
 gsap.registerPlugin(ScrollTrigger);
 
 const About = forwardRef((props, ref) => {
-  const sectionRef  = ref || useRef(null);
-  const labelRef    = useRef(null);
+  const internalSectionRef = useRef(null);
+  const sectionRef  = ref || internalSectionRef;
   const statsRef    = useRef([]);
   const textHeadRef = useRef(null);
   const paraRef     = useRef(null);
@@ -23,10 +23,9 @@ const About = forwardRef((props, ref) => {
 
     const tl = gsap.timeline({ scrollTrigger: st });
 
-    tl.from(labelRef.current, { y: 20, opacity: 0, duration: 0.5, ease: "power3.out" })
-      .from(statsRef.current.filter(Boolean), {
+    tl.from(statsRef.current.filter(Boolean), {
         y: 40, opacity: 0, scale: 0.92, duration: 0.7, ease: "power3.out", stagger: 0.1,
-      }, "-=0.25")
+      })
       .from(textHeadRef.current, { x: 30, opacity: 0, duration: 0.7, ease: "power3.out" }, "-=0.5")
       .from(paraRef.current,     { x: 30, opacity: 0, duration: 0.7, ease: "power3.out" }, "-=0.5")
       .from(btnRef.current,      { y: 20, opacity: 0, duration: 0.5, ease: "back.out(1.6)" }, "-=0.4");
@@ -38,17 +37,16 @@ const About = forwardRef((props, ref) => {
     <section
       ref={sectionRef}
       id="hm-about"
-      className="relative py-28 px-8 md:px-20 text-white"
+      className="home-section relative py-16 md:py-20 px-8 md:px-20 text-white"
     >
-      {/* Section eyebrow */}
-      <p ref={labelRef} className="section-eyebrow text-center mb-12">About Me</p>
+      <h2 className="section-heading mb-8 md:mb-10">{HOME.about.sectionHeading}</h2>
 
-      <div className="fluid-container flex flex-col md:flex-row gap-14 md:gap-20 items-start">
+      <div className="fluid-container flex flex-col md:flex-row gap-12 md:gap-16 items-start">
 
         {/* ── LEFT: stat cards ───────────────────────────────── */}
         <div className="md:w-[42%] flex-shrink-0">
           <div className="grid grid-cols-2 gap-4">
-            {HOME.aboutStats.map((s, i) => (
+            {HOME.about.stats.map((s, i) => (
               <div
                 key={s.label}
                 ref={(el) => (statsRef.current[i] = el)}
@@ -63,23 +61,23 @@ const About = forwardRef((props, ref) => {
 
         {/* ── RIGHT: prose ───────────────────────────────────── */}
         <div className="flex-1">
-          <h2
+          <h3
             ref={textHeadRef}
             className="text-3xl md:text-4xl font-black text-white mb-6 leading-tight"
           >
-            Building Things That{" "}
-            <span className="banner-name-gradient">Matter</span>
-          </h2>
+            {HOME.about.heading}{" "}
+            <span className="banner-name-gradient">{HOME.about.emphasizedHeading}</span>
+          </h3>
 
           <p
             ref={paraRef}
             className="text-gray-400 text-lg leading-relaxed mb-10 max-w-lg"
           >
-            {HOME.about}
+            {HOME.about.description}
           </p>
 
           <div ref={btnRef}>
-            <Button to="/about">View Full About</Button>
+            <Button to={HOME.about.action.link}>{HOME.about.action.label}</Button>
           </div>
         </div>
       </div>

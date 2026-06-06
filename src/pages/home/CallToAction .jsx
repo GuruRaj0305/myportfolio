@@ -30,7 +30,7 @@ const CallToAction = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-28 px-8 md:px-20 text-white">
+    <section ref={sectionRef} className="home-section py-20 md:py-24 px-8 md:px-20 text-white">
       <div className="fluid-container">
         <div className="cta-band text-center py-20 px-8 md:px-16">
           {/* Decorative top line */}
@@ -49,7 +49,7 @@ const CallToAction = () => {
 
           <div ref={btnsRef} className="flex flex-wrap justify-center gap-6">
             <FizzyButton />
-            <Button to="/contact">Let&apos;s Connect</Button>
+            <Button to={HOME.cta.contactAction.link}>{HOME.cta.contactAction.label}</Button>
           </div>
         </div>
       </div>

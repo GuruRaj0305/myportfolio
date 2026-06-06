@@ -73,8 +73,8 @@ const NotFound = () => {
           className="max-h-[90vh] w-auto object-contain rounded-2xl m-auto max-w-[90vw]"
           style={{
             pointerEvents: "none",
-            boxShadow: "0 0 60px rgba(0, 191, 255, 0.8)", // Blue glow
-            border: "2px solid rgba(255, 255, 255, 0.6)", // Optional white border
+            boxShadow: "0 0 60px rgba(var(--color-accent-rgb), 0.8)",
+            border: "2px solid rgba(var(--color-text-rgb), 0.6)",
             borderRadius: "16px",
           }}
         />

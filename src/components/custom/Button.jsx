@@ -17,7 +17,7 @@ function LaserButton({ children, to = "#", arrow = false, targetBlank = false })
         target={targetBlank ? "_blank" : undefined}
         className="
           px-4 py-2
-          text-[#51a2ff]
+          text-[var(--color-accent)]
           transition-all duration-300
           relative
           inline-flex items-center
@@ -29,7 +29,7 @@ function LaserButton({ children, to = "#", arrow = false, targetBlank = false })
         <span
           className="absolute inset-0 -z-10 transition-all duration-300"
           style={{
-            backgroundColor: hover ? "#051937" : "transparent",
+            backgroundColor: hover ? "var(--color-surface)" : "transparent",
           }}
         />
 
@@ -51,14 +51,14 @@ function LaserButton({ children, to = "#", arrow = false, targetBlank = false })
               style={{
                 width: "100%",
                 height: "100%",
-                color: "#51a2ff",
+                color: "var(--color-accent)",
                 transition: "all 0.35s ease",
               }}
             />
             <span
               className="absolute inset-0"
               style={{
-                border: hover ? "2px solid #51a2ff" : "2px solid transparent",
+                border: hover ? "2px solid var(--color-accent)" : "2px solid transparent",
                 transform: hover
                   ? "rotate(45deg)"
                   : "rotate(45deg) scale(0.6)",
@@ -79,8 +79,8 @@ function LaserButton({ children, to = "#", arrow = false, targetBlank = false })
         style={{
           width: hover ? "100%" : "0",
           background:
-            "linear-gradient(90deg,#51a2ff,#9fcdff 70%,rgba(81,162,255,0))",
-          boxShadow: hover ? "0 0 10px #51a2ff,0 0 20px #51a2ff" : "none",
+            "linear-gradient(90deg,var(--color-accent),var(--color-text) 70%,transparent)",
+          boxShadow: hover ? "0 0 10px var(--color-accent),0 0 20px var(--color-accent)" : "none",
           transition: "width 0.25s linear",
         }}
       />
@@ -91,8 +91,8 @@ function LaserButton({ children, to = "#", arrow = false, targetBlank = false })
         style={{
           height: hover ? "100%" : "0",
           background:
-            "linear-gradient(180deg,#51a2ff,#9fcdff 70%,rgba(81,162,255,0))",
-          boxShadow: hover ? "0 0 10px #51a2ff,0 0 20px #51a2ff" : "none",
+            "linear-gradient(180deg,var(--color-accent),var(--color-text) 70%,transparent)",
+          boxShadow: hover ? "0 0 10px var(--color-accent),0 0 20px var(--color-accent)" : "none",
           transition: "height 0.25s linear 0.25s",
         }}
       />
@@ -103,8 +103,8 @@ function LaserButton({ children, to = "#", arrow = false, targetBlank = false })
         style={{
           width: hover ? "100%" : "0",
           background:
-            "linear-gradient(270deg,#51a2ff,#9fcdff 70%,rgba(81,162,255,0))",
-          boxShadow: hover ? "0 0 10px #51a2ff,0 0 20px #51a2ff" : "none",
+            "linear-gradient(270deg,var(--color-accent),var(--color-text) 70%,transparent)",
+          boxShadow: hover ? "0 0 10px var(--color-accent),0 0 20px var(--color-accent)" : "none",
           transition: "width 0.25s linear 0.5s",
         }}
       />
@@ -115,8 +115,8 @@ function LaserButton({ children, to = "#", arrow = false, targetBlank = false })
         style={{
           height: hover ? "100%" : "0",
           background:
-            "linear-gradient(0deg,#51a2ff,#9fcdff 70%,rgba(81,162,255,0))",
-          boxShadow: hover ? "0 0 10px #51a2ff,0 0 20px #51a2ff" : "none",
+            "linear-gradient(0deg,var(--color-accent),var(--color-text) 70%,transparent)",
+          boxShadow: hover ? "0 0 10px var(--color-accent),0 0 20px var(--color-accent)" : "none",
           transition: "height 0.25s linear 0.75s",
         }}
       />

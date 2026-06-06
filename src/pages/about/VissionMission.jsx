@@ -38,7 +38,7 @@ const AboutVisionMission = () => {
       y: 0,
       scale: 1,
       rotateX: 0,
-      boxShadow: "0 0 40px rgba(59,130,246,0.25)",
+      boxShadow: "0 0 40px rgba(var(--color-accent-rgb),0.25)",
       duration: 1.5,
       ease: "power4.out",
       stagger: 0.3,
@@ -87,7 +87,7 @@ const AboutVisionMission = () => {
       className="relative py-28 px-6 md:px-16 overflow-hidden"
     >
       {/* Subtle glow background */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.07),transparent_70%)] pointer-events-none"></div>
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(var(--color-accent-rgb),0.07),transparent_70%)] pointer-events-none"></div>
 
       <div className="max-w-5xl mx-auto text-center relative z-10">
         <h2
@@ -99,7 +99,7 @@ const AboutVisionMission = () => {
 
         <div className="grid md:grid-cols-2 gap-10">
           {/* Vision */}
-          <div className="card bg-gray-800/40 backdrop-blur-lg border border-gray-700/40 rounded-2xl p-8 shadow-[0_0_30px_rgba(0,0,0,0.4)] hover:shadow-[0_0_50px_rgba(59,130,246,0.5)] transition-all duration-500">
+          <div className="card bg-gray-800/40 backdrop-blur-lg border border-gray-700/40 rounded-2xl p-8 shadow-[0_0_30px_rgba(0,0,0,0.4)] hover:shadow-[0_0_50px_rgba(var(--color-accent-rgb),0.5)] transition-all duration-500">
             <h3 className="text-2xl font-semibold text-blue-400 mb-4">
               Vision
             </h3>
@@ -109,7 +109,7 @@ const AboutVisionMission = () => {
           </div>
 
           {/* Mission */}
-          <div className="card bg-gray-800/40 backdrop-blur-lg border border-gray-700/40 rounded-2xl p-8 shadow-[0_0_30px_rgba(0,0,0,0.4)] hover:shadow-[0_0_50px_rgba(59,130,246,0.5)] transition-all duration-500">
+          <div className="card bg-gray-800/40 backdrop-blur-lg border border-gray-700/40 rounded-2xl p-8 shadow-[0_0_30px_rgba(0,0,0,0.4)] hover:shadow-[0_0_50px_rgba(var(--color-accent-rgb),0.5)] transition-all duration-500">
             <h3 className="text-2xl font-semibold text-blue-400 mb-4">
               Mission
             </h3>

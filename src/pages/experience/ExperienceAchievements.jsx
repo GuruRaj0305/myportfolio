@@ -62,7 +62,7 @@ const ExperienceAchievements = () => {
       className="relative py-24 px-6 text-gray-100 overflow-hidden"
     >
       {/* Section heading */}
-      <h3 className="text-4xl sm:text-5xl font-bold text-center mb-16 text-[#51a2ff] drop-shadow-[0_0_12px_rgba(81,162,255,0.4)]">
+      <h3 className="text-4xl sm:text-5xl font-bold text-center mb-16 text-[var(--color-accent)] drop-shadow-[0_0_12px_rgba(var(--color-accent-rgb),0.4)]">
         Achievements & Highlights
       </h3>
 
@@ -71,16 +71,16 @@ const ExperienceAchievements = () => {
         {EXPERIENCE.achievements.map((item, idx) => (
           <div
             key={idx}
-            className="achievement-card relative border border-[#51a2ff]/50 rounded-xl p-6
-                       shadow-[0_0_20px_rgba(81,162,255,0.15)] hover:shadow-[0_0_25px_rgba(81,162,255,0.3)]
+            className="achievement-card relative border border-[rgba(var(--color-accent-rgb),0.5)] rounded-xl p-6
+                       shadow-[0_0_20px_rgba(var(--color-accent-rgb),0.15)] hover:shadow-[0_0_25px_rgba(var(--color-accent-rgb),0.3)]
                        transition-all duration-500 backdrop-blur-sm overflow-hidden"
           >
             {/* Animated glow line */}
-            <span className="absolute left-0 top-0 h-full w-[2px] bg-[#51a2ff] opacity-80 animate-pulse shadow-[0_0_20px_#51a2ff]" />
+            <span className="absolute left-0 top-0 h-full w-[2px] bg-[var(--color-accent)] opacity-80 animate-pulse shadow-[0_0_20px_var(--color-accent)]" />
 
             {/* Card content */}
             <div className="flex items-start gap-3 relative z-10 pl-4">
-              <span className="mt-2 w-3 h-3 rounded-full bg-[#51a2ff] shadow-[0_0_10px_#51a2ff] flex-shrink-0" />
+              <span className="mt-2 w-3 h-3 rounded-full bg-[var(--color-accent)] shadow-[0_0_10px_var(--color-accent)] flex-shrink-0" />
               <p className="text-lg text-gray-200 leading-relaxed">{item}</p>
             </div>
           </div>

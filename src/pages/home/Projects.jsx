@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { PROJECTS } from "../../data";
+import { HOME, PROJECTS } from "../../data";
 import Button from "../../components/custom/Button";
 import { useGSAP } from "@gsap/react";
 import { Link } from "react-router-dom";
@@ -10,7 +10,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 const FeaturedProjects = () => {
   const sectionRef = useRef(null);
-  const labelRef   = useRef(null);
+  const headingRef = useRef(null);
   const cardsRef   = useRef([]);
   const btnRef     = useRef(null);
 
@@ -25,7 +25,7 @@ const FeaturedProjects = () => {
       scrollTrigger: { trigger: el, start: "top 80%", toggleActions: "restart none none none" },
     });
 
-    tl.from(labelRef.current, { y: 24, opacity: 0, duration: 0.5, ease: "power3.out" })
+    tl.from(headingRef.current, { y: 24, opacity: 0, duration: 0.5, ease: "power3.out" })
       .from(cards, {
         y: 60, opacity: 0, scale: 0.9,
         duration: 0.7, ease: "power3.out", stagger: 0.12,
@@ -36,11 +36,10 @@ const FeaturedProjects = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative py-24 px-8 md:px-20 text-white">
+    <section ref={sectionRef} className="home-section relative pt-16 md:pt-20 pb-20 md:pb-28 px-8 md:px-20 text-white">
       <div className="fluid-container">
-        <p ref={labelRef} className="section-eyebrow text-center mb-4">What I&apos;ve Built</p>
-        <h2 className="text-3xl md:text-4xl font-black text-center text-white mb-14">
-          Featured Projects
+        <h2 ref={headingRef} className="section-heading mb-8 md:mb-10">
+          {HOME.projects.heading}
         </h2>
 
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -72,14 +71,14 @@ const FeaturedProjects = () => {
                 to={`/project/${project.slug}`}
                 className="project-card-link"
               >
-                View Detail <span className="project-card-link-arrow">→</span>
+                {HOME.projects.detailLabel} <span className="project-card-link-arrow">{HOME.projects.detailArrow}</span>
               </Link>
             </div>
           ))}
         </div>
 
-        <div ref={btnRef} className="flex justify-center mt-14">
-          <Button arrow="right" to="/projects">View All Projects</Button>
+        <div ref={btnRef} className="flex justify-center mt-14 md:mt-32">
+          <Button arrow="right" to={HOME.projects.action.link}>{HOME.projects.action.label}</Button>
         </div>
       </div>
     </section>
