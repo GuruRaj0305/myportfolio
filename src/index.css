@@ -99,13 +99,12 @@ body {
 }
 
 .header {
-  backdrop-filter: blur(0px);
-  transition: all 0.7s ease; /* smooth transition */
+  background: transparent;
+  transition: padding 0.7s ease;
 }
 
 body.scrolled .header {
-  backdrop-filter: blur(4px);
-  background: rgba(0, 0, 0, 0.4);
+  background: transparent;
   padding: 10px 20px;
 }
 
@@ -357,11 +356,7 @@ body.scrolled .header {
 }
 
 .home-section {
-  background: linear-gradient(
-    180deg,
-    rgba(var(--color-accent-rgb), 0.035) 0%,
-    rgba(var(--color-accent-rgb), 0) 35%
-  );
+  background: transparent;
 }
 
 
