@@ -8,8 +8,7 @@ import Footer from "./Footer";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import TypingBackgroundText from "../../components/custom/TypingBackgroundText";
-import ScrollFalling from "../../components/custom/ScrollFalling";
-import WanderingOrb from "../../components/custom/WanderingOrb";
+import ScrollSceneObjects from "../../components/custom/ScrollSceneObjects";
 import Banner from "./Banner";
 import { useLocation } from "react-router-dom";
 import { useGSAP } from "@gsap/react";
@@ -39,6 +38,7 @@ function Home() {
     <>
       <div className="relative w-full h-full">
         <TypingBackgroundText key={location.pathname}>
+          <ScrollSceneObjects />
           <div className="relative z-10">
             <Banner />
             <About ref={aboutRef} />

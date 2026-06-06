@@ -359,6 +359,181 @@ body.scrolled .header {
   background: transparent;
 }
 
+/* ================================================================
+   Home scroll scene
+   ================================================================ */
+.scroll-scene {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.architecture-map,
+.event-flow,
+.deployment-flow {
+  position: absolute;
+  opacity: 0.22;
+  font-family: ui-monospace, monospace;
+  color: var(--color-muted);
+  will-change: transform;
+}
+
+.scroll-scene-label {
+  margin-bottom: 12px;
+  color: var(--color-accent);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.architecture-map {
+  top: 9%;
+  left: 3%;
+  width: min(31vw, 430px);
+  min-width: 350px;
+}
+
+.architecture-row {
+  display: flex;
+  justify-content: center;
+  gap: 7px;
+}
+
+.architecture-node {
+  display: block;
+  min-width: 78px;
+  padding: 7px 9px;
+  border: 1px solid rgba(var(--color-muted-rgb), 0.28);
+  border-radius: 6px;
+  background: rgba(var(--color-background-rgb), 0.7);
+  font-size: 0.58rem;
+  letter-spacing: 0.05em;
+  text-align: center;
+}
+
+.architecture-gateway {
+  width: 62%;
+  margin: 0 auto;
+  border-color: rgba(var(--color-accent-rgb), 0.52);
+  color: var(--color-accent);
+}
+
+.architecture-data {
+  border-radius: 999px;
+}
+
+.architecture-connector {
+  display: block;
+  width: 1px;
+  height: 20px;
+  margin: 0 auto;
+  background: rgba(var(--color-accent-rgb), 0.4);
+}
+
+.architecture-packet {
+  position: absolute;
+  top: 42px;
+  left: calc(50% - 3px);
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  box-shadow: 0 0 14px rgba(var(--color-accent-rgb), 0.8);
+}
+
+.event-flow {
+  top: 48%;
+  right: 2%;
+  width: min(37vw, 520px);
+  min-width: 430px;
+}
+
+.event-flow-track {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.event-flow-track::before {
+  content: "";
+  position: absolute;
+  top: 14px;
+  left: 7%;
+  right: 7%;
+  height: 1px;
+  background: rgba(var(--color-accent-rgb), 0.42);
+}
+
+.event-flow-step {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+  width: 25%;
+  font-size: 0.58rem;
+  text-align: center;
+}
+
+.event-flow-icon {
+  display: grid;
+  width: 29px;
+  height: 29px;
+  place-items: center;
+  border: 1px solid rgba(var(--color-accent-rgb), 0.45);
+  border-radius: 50%;
+  background: var(--color-background);
+  color: var(--color-accent);
+}
+
+.event-packet {
+  position: absolute;
+  top: 11px;
+  left: 7%;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--color-text);
+  box-shadow: 0 0 12px rgba(var(--color-text-rgb), 0.75);
+}
+
+.deployment-flow {
+  right: 7%;
+  bottom: 9%;
+  padding: 12px 16px;
+  border: 1px solid rgba(var(--color-muted-rgb), 0.25);
+  border-radius: 8px;
+  background: rgba(var(--color-background-rgb), 0.72);
+}
+
+.deployment-flow > div {
+  display: flex;
+  gap: 8px;
+  font-size: 0.6rem;
+}
+
+.deployment-flow span {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.deployment-flow b {
+  color: var(--color-accent);
+  font-weight: 400;
+}
+
+@media (max-width: 767px), (prefers-reduced-motion: reduce) {
+  .scroll-scene {
+    display: none;
+  }
+}
+
 
 /* ================================================================
    About — stat cards

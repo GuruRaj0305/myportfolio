@@ -251,9 +251,24 @@ export default function Banner() {
         {/* macOS code card */}
         <div className="relative z-10 w-full max-w-[390px] rounded-2xl overflow-hidden shadow-2xl code-window-border bg-[var(--color-surface)]">
           <div className="flex items-center gap-2 px-4 py-3 bg-black/50 border-b border-white/[0.06]">
-            <span className="w-3 h-3 rounded-full bg-[var(--color-muted)]" />
-            <span className="w-3 h-3 rounded-full bg-[var(--color-accent)]" />
-            <span className="w-3 h-3 rounded-full bg-[var(--color-text)]" />
+            <span
+              className="w-3 h-3 rounded-full bg-[#ff5f57]"
+              role="img"
+              aria-label="Close"
+              title="Close"
+            />
+            <span
+              className="w-3 h-3 rounded-full bg-[#febc2e]"
+              role="img"
+              aria-label="Minimize"
+              title="Minimize"
+            />
+            <span
+              className="w-3 h-3 rounded-full bg-[#28c840]"
+              role="img"
+              aria-label="Maximize"
+              title="Maximize"
+            />
             <span className="ml-3 font-mono text-[11px] text-gray-500 select-none">{codeCard.filename}</span>
           </div>
           <div className="p-5 font-mono text-[13px] leading-7 text-left select-none">

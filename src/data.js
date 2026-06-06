@@ -337,6 +337,23 @@ export const HOME = {
       link: "/projects",
     },
   },
+  scrollScene: {
+    architecture: {
+      label: "Multi-tenant SaaS Architecture",
+      tenants: ["Tenant A", "Tenant B", "Tenant C"],
+      gateway: "API Gateway",
+      services: ["Auth", "Projects", "Files"],
+      data: ["PostgreSQL", "Redis", "AWS ECS"],
+    },
+    fileFlow: {
+      label: "Event-driven FileStream",
+      steps: ["Upload", "Amazon S3", "Amazon SQS", "AWS Lambda"],
+    },
+    deployment: {
+      label: "Cloud-native Delivery",
+      steps: ["Git", "CI/CD", "Docker", "AWS ECS"],
+    },
+  },
   cta: {
     heading: "Let\u2019s Build Something Great Together",
     sub: "Actively seeking full-time opportunities to build impactful products with great teams.",
