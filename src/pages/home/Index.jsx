@@ -12,6 +12,7 @@ import ScrollSceneObjects from "../../components/custom/ScrollSceneObjects";
 import Banner from "./Banner";
 import { useLocation } from "react-router-dom";
 import { useGSAP } from "@gsap/react";
+import HomeScrollExperience from "../../components/custom/HomeScrollExperience";
 
 // Register plugin once
 gsap.registerPlugin(ScrollTrigger, useGSAP);
@@ -39,7 +40,8 @@ function Home() {
       <div className="relative w-full h-full">
         <TypingBackgroundText key={location.pathname}>
           <ScrollSceneObjects />
-          <div className="relative z-10">
+          <HomeScrollExperience />
+          <div className="home-scroll-story relative z-10">
             <Banner />
             <About ref={aboutRef} />
             <Highlights />
