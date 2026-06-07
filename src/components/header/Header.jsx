@@ -7,18 +7,35 @@ import { Link, useLocation } from "react-router-dom";
 
 gsap.registerPlugin(TextPlugin);
 
+const NAV_LINKS = [
+  { text: "Home", link: "/" },
+  { text: "About", link: "/about" },
+  { text: "Projects", link: "/projects" },
+  { text: "Experience", link: "/experience" },
+  { text: "Contact", link: "/contact" },
+];
+
 function Header() {
   const location = useLocation();
   const headerRef = useRef(null);
-  const navUl = useRef(null);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const menuRef = useRef(null);
   const line1Ref = useRef(null);
   const line2Ref = useRef(null);
   const line3Ref = useRef(null);
   const linksRef = useRef([]);
 
-  const mobileLinks = [{text:"Home", link: "/"}, {text:"About", link: "/about"}, {text:"Projects", link: "/projects"}, {text:"Experience", link: "/experience"}, {text:"Contact", link: "/contact"}];
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 24);
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    setMenuOpen(false);
+  }, [location.pathname]);
 
   // Animate logo and desktop nav
   useEffect(() => {
@@ -60,7 +77,7 @@ function Header() {
 
       // Fade/slide in links instantly (no typing)
       linksRef.current.forEach((link, i) => {
-        link.innerText = mobileLinks[i].text;
+        link.innerText = NAV_LINKS[i].text;
 
         gsap.fromTo(
           link,
@@ -91,51 +108,57 @@ function Header() {
     <>
       <header
         ref={headerRef}
-        className="flex items-center justify-between py-5 px-6 md:px-10 fixed top-0 left-0 w-full z-50 text-white header"
+        className={`site-header fixed top-0 left-0 w-full z-50 ${scrolled ? "is-scrolled" : ""}`}
       >
-        <div className="logo">
-          <Logo />
-        </div>
+        <div className="site-header-shell">
+          <div className="logo site-brand">
+            <Logo />
+            <div className="site-brand-copy">
+              <strong>Gururaj HR</strong>
+              <span>Software Engineer</span>
+            </div>
+          </div>
 
-        {/* Hamburger */}
-        <div
-          className="md:hidden cursor-pointer z-50 flex flex-col justify-center items-center gap-1"
-          onClick={() => setMenuOpen(!menuOpen)}
-        >
-          <div ref={line1Ref} className="w-6 h-0.5 bg-white"></div>
-          <div ref={line2Ref} className="w-6 h-0.5 bg-white"></div>
-          <div ref={line3Ref} className="w-6 h-0.5 bg-white"></div>
-        </div>
-
-        {/* Desktop nav */}
-        <nav ref={navUl} className="  desktop hidden md:block p-5">
-          <ul className="flex gap-8 text-lg font-medium text-gray-300  ">
-            {mobileLinks.map((link) => {
-              return (
-                <li key={link.link} >
+          <nav className="desktop hidden md:block">
+            <span className="site-nav-caption">Portfolio index</span>
+            <ul className="site-nav-list">
+              {NAV_LINKS.map((link) => (
+                <li key={link.link}>
                   <NavButton to={link.link}>{link.text}</NavButton>
                 </li>
-              )
-            })}
+              ))}
+            </ul>
+          </nav>
 
-          </ul>
-        </nav>
+          <button
+            type="button"
+            className="site-menu-toggle md:hidden"
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label={menuOpen ? "Close navigation" : "Open navigation"}
+            aria-expanded={menuOpen}
+          >
+            <span ref={line1Ref} />
+            <span ref={line2Ref} />
+            <span ref={line3Ref} />
+          </button>
+        </div>
 
         {/* Mobile menu */}
-       <nav
+        <nav
           ref={menuRef}
-          className="md:hidden fixed top-0 right-0 w-[100vw] h-[100vh] flex flex-col items-center justify-center gap-8 z-40 bg-black/90 backdrop-blur-sm"
+          className="site-mobile-menu md:hidden"
           style={{ transform: "translateX(100%)" }}
         >
-          <ul className="flex flex-col items-center gap-6 text-2xl">
-            {mobileLinks.map((info, idx) => (
+          <p>Navigation / 05</p>
+          <ul>
+            {NAV_LINKS.map((info, idx) => (
               <Link
                 to={info.link}
                 key={idx}
                 ref={(el) => (linksRef.current[idx] = el)}
                 onClick={() => setMenuOpen(false)}
-                className="cursor-pointer"
-              ></Link>
+                className={location.pathname === info.link ? "is-active" : ""}
+              />
             ))}
           </ul>
         </nav>
