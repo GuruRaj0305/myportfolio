@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import { useRef /* useEffect */ } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
@@ -9,7 +9,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function Banner() {
   const bannerRef  = useRef(null);
-  const canvasRef  = useRef(null);
+  // const canvasRef = useRef(null); // Used by the preserved fire canvas effect.
   const greetRef   = useRef(null);
   const h1Ref      = useRef(null);
   const underlineRef = useRef(null);
@@ -19,7 +19,7 @@ export default function Banner() {
   const rightRef   = useRef(null);
   const scrollRef  = useRef(null);
 
-  // ── Fire canvas ─────────────────────────────────────────────────
+  /* Fire canvas effect preserved for later use.
   useEffect(() => {
     const canvas  = canvasRef.current;
     const section = bannerRef.current;
@@ -120,6 +120,7 @@ export default function Banner() {
       section.removeEventListener("mouseleave", onLeave);
     };
   }, []);
+  */
 
   // ── GSAP entrance + role cycling + parallax ──────────────────────
   useGSAP(() => {
@@ -185,13 +186,14 @@ export default function Banner() {
       ref={bannerRef}
       className="relative h-screen flex items-center justify-between px-10 md:px-20 overflow-hidden fluid-container"
     >
-      {/* Fire canvas — screen blend so it glows naturally on dark bg */}
+      {/* Fire canvas preserved for later use.
       <canvas
         ref={canvasRef}
         className="absolute inset-0 pointer-events-none z-[50]"
         style={{ mixBlendMode: "screen" }}
         aria-hidden="true"
       />
+      */}
 
       {/* Dot-grid pattern */}
       <div className="absolute inset-0 pointer-events-none banner-dot-grid" aria-hidden="true" />

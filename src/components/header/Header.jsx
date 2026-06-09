@@ -66,19 +66,13 @@ function Header() {
     if (!menuRef.current) return;
 
     if (menuOpen) {
-      // Reset
-      linksRef.current.forEach((link) => (link.innerText = ""));
-
       gsap.to(line1Ref.current, { rotate: 45, y: 8, duration: 0.3 });
       gsap.to(line2Ref.current, { opacity: 0, duration: 0.3 });
       gsap.to(line3Ref.current, { rotate: -45, y: -8, duration: 0.3 });
 
       gsap.to(menuRef.current, { x: 0, duration: 0.5, ease: "power3.out" });
 
-      // Fade/slide in links instantly (no typing)
       linksRef.current.forEach((link, i) => {
-        link.innerText = NAV_LINKS[i].text;
-
         gsap.fromTo(
           link,
           { opacity: 0, x: -20 },
@@ -98,8 +92,6 @@ function Header() {
       gsap.to(line3Ref.current, { rotate: 0, y: 0, duration: 0.3 });
 
       gsap.to(menuRef.current, { x: "100%", duration: 0.5, ease: "power3.in" });
-
-      linksRef.current.forEach((link) => (link.innerText = ""));
     }
   }, [menuOpen]);
 
@@ -158,7 +150,10 @@ function Header() {
                 ref={(el) => (linksRef.current[idx] = el)}
                 onClick={() => setMenuOpen(false)}
                 className={location.pathname === info.link ? "is-active" : ""}
-              />
+              >
+                <span>{String(idx + 1).padStart(2, "0")}</span>
+                {info.text}
+              </Link>
             ))}
           </ul>
         </nav>

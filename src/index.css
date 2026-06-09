@@ -308,6 +308,7 @@ body.scrolled .header {
   background-size: 42px 42px;
   -webkit-backdrop-filter: blur(18px);
   backdrop-filter: blur(18px);
+  pointer-events: auto;
 }
 
 .site-mobile-menu p {
@@ -325,7 +326,9 @@ body.scrolled .header {
 }
 
 .site-mobile-menu a {
-  display: block;
+  display: flex;
+  align-items: baseline;
+  gap: 0.8rem;
   padding: 0.65rem 0;
   color: rgba(var(--color-muted-rgb), 0.65);
   font-size: clamp(2.5rem, 12vw, 5rem);
@@ -334,6 +337,16 @@ body.scrolled .header {
   line-height: 1;
   text-decoration: none;
   border-bottom: 1px solid rgba(var(--color-muted-rgb), 0.13);
+  pointer-events: auto;
+  touch-action: manipulation;
+}
+
+.site-mobile-menu a span {
+  color: rgba(var(--color-accent-rgb), 0.5);
+  font-family: ui-monospace, monospace;
+  font-size: 0.55rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
 }
 
 .site-mobile-menu a.is-active {
