@@ -9,7 +9,7 @@ gsap.registerPlugin(TextPlugin);
 
 const NAV_LINKS = [
   { text: "Home", link: "/" },
-  { text: "About", link: "/about" },
+  // { text: "About", link: "/about" },
   { text: "Projects", link: "/projects" },
   { text: "Experience", link: "/experience" },
   { text: "Contact", link: "/contact" },

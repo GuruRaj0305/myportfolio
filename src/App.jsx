@@ -21,14 +21,14 @@ const routeDefinations = createRoutesFromElements(
   <>
     <Route path="/" element={<Layout />} >
       <Route index element={<Home />}  />
-      <Route
+      {/* <Route
         path="/about"
         element={
           <Suspense fallback={<div>Loading...</div>}>
             <AboutPage />
           </Suspense>
         }
-      />
+      /> */}
       <Route
         path="/experience"
         element={
