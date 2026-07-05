@@ -56,7 +56,6 @@ const SkillsGrid = () => {
 
   return () => {
     clearTimeout(id);
-    ScrollTrigger.getAll().forEach((t) => t.kill());
   };
 }, []);
 

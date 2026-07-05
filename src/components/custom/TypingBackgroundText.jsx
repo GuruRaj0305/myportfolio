@@ -1,16 +1,11 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const TypingBackgroundText = ({ children }) => {
-  const containerRef = useRef(null);
-  const overAllContainerRef = useRef(null);
-  const [displayText, setDisplayText] = useState("");
-
-  const codeBlock = `
+const codeBlock = `
 // memsnap.cpp  — dummy memory snapshot tool (harmless mock)
 #include <iostream>
 #include <vector>
@@ -81,14 +76,22 @@ int main(int argc, char** argv) {
 
 `;
 
+// Reveal the code in ~140 coarse steps across the whole page instead of one
+// per character per frame — and write straight to the DOM so scrolling never
+// re-renders the React tree wrapped inside this component.
+const TYPE_STEPS = 140;
+
+const TypingBackgroundText = ({ children }) => {
+  const textRef = useRef(null);
+  const overAllContainerRef = useRef(null);
+
   useGSAP(() => {
     const el = overAllContainerRef.current;
-    if (!el) return;
+    const textEl = textRef.current;
+    if (!el || !textEl) return;
 
-    const letters = codeBlock.split("");
-    const totalLetters = letters.length;
-
-    setDisplayText("");
+    const totalLetters = codeBlock.length;
+    let lastCount = -1;
 
     const tween = gsap.to({}, {
       scrollTrigger: {
@@ -99,27 +102,28 @@ int main(int argc, char** argv) {
         invalidateOnRefresh: true,
       },
       onUpdate() {
-        // use "this" to access scrollTrigger safely
         const progress = this.scrollTrigger?.progress ?? 0;
-        const letterCount = Math.floor(progress * totalLetters);
-        setDisplayText(letters.slice(0, letterCount).join(""));
+        const step = Math.floor(progress * TYPE_STEPS);
+        const letterCount = Math.floor((step / TYPE_STEPS) * totalLetters);
+        if (letterCount !== lastCount) {
+          lastCount = letterCount;
+          textEl.textContent = codeBlock.slice(0, letterCount);
+        }
       },
     });
 
     return () => {
       tween.scrollTrigger?.kill();
       tween.kill();
-      ScrollTrigger.getAll().forEach((t) => t.kill());
     };
-  }, [codeBlock, overAllContainerRef]);
+  }, []);
 
   return (
     <div ref={overAllContainerRef} className="relative min-h-screen typing">
       <pre
-        ref={containerRef}
         className="fixed top-0 left-0 w-full h-full text-left text-white/15 font-mono select-none whitespace-pre-wrap overflow-hidden z-0 pointer-events-none"
       >
-        <div className="p-3 text-[9px] sm:text-[10px] md:text-[11px] lg:text-[11px]">{displayText}</div>
+        <div ref={textRef} className="p-3 text-[9px] sm:text-[10px] md:text-[11px] lg:text-[11px]" />
       </pre>
       <div className="relative z-10">{children}</div>
     </div>

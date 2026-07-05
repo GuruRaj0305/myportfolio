@@ -40,7 +40,6 @@ const ProjectsShowcase = () => {
 
     return () => {
       clearTimeout(id);
-      ScrollTrigger.getAll().forEach((t) => t.kill());
     };
   }, []);
 

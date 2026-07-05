@@ -56,13 +56,16 @@ export default function HomeScrollExperience() {
 
       const heading = section.querySelector(".section-heading");
       if (heading) {
+        // transform/opacity only — animating letter-spacing forces a text
+        // re-layout every scroll frame and stutters on older machines.
         gsap.fromTo(
           heading,
-          { letterSpacing: "0.55em", opacity: 0.25 },
+          { scale: 1.18, opacity: 0.25 },
           {
-            letterSpacing: "0.22em",
+            scale: 1,
             opacity: 1,
             ease: "none",
+            transformOrigin: "center center",
             scrollTrigger: {
               trigger: section,
               start: "top 88%",
