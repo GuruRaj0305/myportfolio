@@ -14,29 +14,18 @@ const AboutWhatsNext = () => {
     const items = el.querySelectorAll(".next-item");
 
     // Subtle rise-in animation
-    gsap.set(items, { opacity: 0, y: 80, scale: 0.95 });
+    gsap.set(items, { opacity: 0, y: 40 });
     gsap.to(items, {
       opacity: 1,
       y: 0,
-      scale: 1,
-      duration: 1.4,
-      stagger: 0.3,
+      duration: 0.9,
+      stagger: 0.18,
       ease: "power3.out",
       scrollTrigger: {
         trigger: el,
         start: "top 85%",
-        end: "bottom 70%",
         toggleActions: "play none none reverse",
       },
-    });
-
-    // Floating effect for “forward motion” feeling
-    gsap.to(items, {
-      y: "+=10",
-      repeat: -1,
-      yoyo: true,
-      duration: 3,
-      ease: "sine.inOut",
     });
   }, []);
 
@@ -45,15 +34,13 @@ const AboutWhatsNext = () => {
       ref={sectionRef}
       className="relative py-28 px-6 md:px-16 bg-gradient-to-b text-center overflow-hidden"
     >
-      {/* Futuristic ambient glow */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(var(--color-accent-rgb),0.08),transparent_70%)] pointer-events-none"></div>
-
       <div className="max-w-4xl mx-auto relative z-10">
-        <h2 className="text-4xl md:text-5xl font-bold text-white tracking-wide">
+        <span className="section-heading mb-4">Looking Ahead</span>
+        <h2 className="text-4xl md:text-5xl font-bold text-white tracking-wide mb-6">
           What’s Next
         </h2>
 
-        <p className="text-gray-400 text-lg max-w-3xl mx-auto">
+        <p className="text-gray-400 text-lg max-w-3xl mx-auto mb-12">
           I believe growth never stops. Here’s what I’m focusing on next in my journey:
         </p>
 

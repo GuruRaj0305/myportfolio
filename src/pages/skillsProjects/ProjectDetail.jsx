@@ -98,7 +98,7 @@ export default function ProjectDetail() {
             <div className="fluid-container max-w-5xl mx-auto">
               {/* Title + Description */}
               <section className="project-detail-hero mb-10">
-                <h1 className="text-5xl font-extrabold text-[var(--color-accent)] mb-6">
+                <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[var(--color-accent)] mb-6">
                   {selectedProject.name}
                 </h1>
 

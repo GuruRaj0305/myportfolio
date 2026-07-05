@@ -20,15 +20,6 @@ export default function RouteAtmosphere({ variant }) {
         ease: "none",
         scrollTrigger: { trigger: page, start: "top top", end: "bottom bottom", scrub: 1.5 },
       });
-      gsap.utils.toArray(page.querySelectorAll("section")).forEach((section, index) => {
-        gsap.fromTo(section.children, { y: 45, autoAlpha: 0.4 }, {
-          y: index % 2 ? -12 : 0,
-          autoAlpha: 1,
-          stagger: 0.08,
-          ease: "none",
-          scrollTrigger: { trigger: section, start: "top 90%", end: "top 38%", scrub: 1 },
-        });
-      });
     }
 
     if (variant === "experience") {
@@ -78,7 +69,7 @@ export default function RouteAtmosphere({ variant }) {
     return (
       <div ref={rootRef} className="route-atmosphere experience-atmosphere" aria-hidden="true">
         <div className="experience-route"><span className="experience-route-fill" /></div>
-        <span className="experience-year">2023</span><span className="experience-year">2024</span><span className="experience-year">NOW</span>
+        <span className="experience-year">NOW</span><span className="experience-year">2024</span><span className="experience-year">2023</span>
       </div>
     );
   }

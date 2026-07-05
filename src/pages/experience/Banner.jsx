@@ -2,6 +2,7 @@ import { useRef } from "react";
 import { gsap } from "gsap";
 import LaserButton from "../../components/custom/Button";
 import { useGSAP } from "@gsap/react";
+import { EXPERIENCE } from "../../data";
 
 const ExperienceBanner = () => {
   const bannerRef = useRef(null);
@@ -74,12 +75,13 @@ const ExperienceBanner = () => {
         ref={textRef}
         className="text-gray-300 text-lg max-w-2xl sm:max-w-3xl leading-relaxed mb-10"
       >
-        A journey through my professional growth — from testing and hardware-level
-        development to full-stack web engineering and SaaS product building.
+        3+ years of professional growth — from hardware-level diagnostics and
+        Python automation to full-stack engineering, multi-tenant SaaS
+        platforms, and AI-powered systems on AWS.
       </p>
 
-      <div ref={buttonRef} >
-        <LaserButton targetBlank={true} to="/resume_gururaj.pdf" >Resume</LaserButton>
+      <div ref={buttonRef} className="flex flex-wrap items-center justify-center gap-4">
+        <LaserButton targetBlank={true} to={EXPERIENCE.resumeLink} >Resume</LaserButton>
         <LaserButton targetBlank={true} to="/professional_profile_gururaj.pdf" >Professional Profile</LaserButton>
       </div>
     </section>

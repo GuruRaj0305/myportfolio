@@ -79,9 +79,6 @@ body {
 }
 
 
-.banner-content-wrapper{
-  min-height: 10000px;
-}
 
 
 #smooth-wrapper {
@@ -609,6 +606,87 @@ body.scrolled .header {
 }
 .scroll-indicator-anim { animation: scroll-indicator 2.2s ease-in-out infinite; }
 
+
+/* ================================================================
+   Editorial button — shared pill style for all CTAs
+   ================================================================ */
+.btn-editorial {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  height: 46px;
+  padding: 0 26px;
+  border: 1px solid rgba(var(--color-accent-rgb), 0.38);
+  border-radius: 999px;
+  background: rgba(var(--color-accent-rgb), 0.05);
+  color: var(--color-accent);
+  font-family: ui-monospace, monospace;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  overflow: hidden;
+  cursor: pointer;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  transition:
+    color 0.35s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease,
+    transform 0.35s ease;
+}
+
+/* Fill sweep layer */
+.btn-editorial::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: var(--color-accent);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.4s cubic-bezier(0.6, 0.05, 0.2, 1);
+}
+
+.btn-editorial > * {
+  position: relative;
+  z-index: 1;
+}
+
+.btn-editorial:hover {
+  color: var(--color-background);
+  border-color: var(--color-accent);
+  box-shadow: 0 0 22px var(--color-glow);
+  transform: translateY(-2px);
+}
+
+.btn-editorial:hover::before {
+  transform: scaleX(1);
+}
+
+.btn-editorial:active {
+  transform: translateY(-2px) scale(0.97);
+}
+
+.btn-editorial .btn-arrow {
+  transition: transform 0.35s ease;
+}
+
+.btn-editorial:hover .btn-arrow {
+  transform: translateX(4px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-editorial,
+  .btn-editorial::before,
+  .btn-editorial .btn-arrow {
+    transition: none;
+  }
+}
 
 /* ================================================================
    Shared Section Utilities
@@ -1163,8 +1241,7 @@ body.scrolled .header {
   z-index: 0;
   pointer-events: none;
   background:
-    linear-gradient(90deg, transparent 49.95%, rgba(var(--color-text-rgb), 0.035) 50%, transparent 50.05%),
-    radial-gradient(circle at 50% 0%, rgba(var(--color-text-rgb), 0.08), transparent 42%);
+    linear-gradient(90deg, transparent 49.95%, rgba(var(--color-text-rgb), 0.035) 50%, transparent 50.05%);
 }
 
 .route-atmosphere {
@@ -1487,6 +1564,47 @@ body.scrolled .header {
   filter: grayscale(0.55);
   box-shadow: none !important;
   border: 1px solid rgba(var(--color-muted-rgb), 0.3) !important;
+}
+
+/* ================================================================
+   Motion preferences — stop decorative CSS loops for users who
+   asked for reduced motion.
+   ================================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .animate-float1,
+  .animate-float2,
+  .animate-float3,
+  .animate-slow-pulse,
+  .badge-float,
+  .scroll-indicator-anim,
+  .banner-name-gradient {
+    animation: none !important;
+  }
+}
+
+/* ================================================================
+   Mobile refinements for editorial pages
+   ================================================================ */
+@media (max-width: 767px) {
+  .experience-editorial-page .timeline-card {
+    margin-right: 0;
+    padding: 1.25rem;
+    border-radius: 0 18px 18px 0;
+  }
+
+  .project-detail-editorial-page::after {
+    display: none;
+  }
+
+  .project-detail-editorial-page section {
+    padding: 1.25rem;
+  }
+}
+
+@media (max-width: 639px) {
+  .experience-editorial-page .achievement-card:nth-child(even) {
+    transform: none;
+  }
 }
 
 @media (max-width: 767px), (prefers-reduced-motion: reduce) {

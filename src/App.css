@@ -54,52 +54,50 @@
   --gray: var(--color-muted);
 }
 
+/* Resume download button — state overrides on top of .btn-editorial */
 .download-button {
   outline: none;
-  height: 40px;
-  width: 150px;
-  border-radius: 40px;
-  background: var(--dark); /* dark background instead of white */
-  border: 2px solid var(--blue);
-  color: var(--blue); /* text color */
-  letter-spacing: 1px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: all 0.25s ease;
-  position: relative;
+  width: 148px;
+  transition:
+    width 0.35s ease,
+    color 0.35s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease,
+    transform 0.35s ease;
 }
 
-.download-button:hover {
-  color: var(--color-background);
-  background: var(--blue); /* blue background on hover */
-}
-
-.download-button:active {
-  letter-spacing: 2px;
-}
-
-.onclic {
-  width: 40px;
-  border-color: var(--gray);
-  border-width: 3px;
+/* Loading: collapse into a spinner ring */
+.download-button.onclic {
+  width: 46px;
+  padding: 0;
   font-size: 0;
-  border-left-color: var(--blue);
-  animation: rotating 2s 0.25s linear infinite;
+  letter-spacing: 0;
+  border-width: 2px;
+  border-color: rgba(var(--color-muted-rgb), 0.3);
+  border-left-color: var(--color-accent);
+  background: transparent;
+  animation: rotating 1.4s linear infinite;
 }
 
-.onclic:after {
-  content: "";
+.download-button.onclic::before {
+  display: none;
 }
 
-.onclic:hover {
-  color: var(--blue);
-  background: var(--dark); /* dark background instead of white */
+.download-button.onclic:hover {
+  transform: none;
+  box-shadow: none;
 }
 
-.validate {
-  font-size: 13px;
+/* Done: solid accent fill with the check mark */
+.download-button.validate {
   color: var(--color-background);
-  background: var(--blue); /* blue background on validate */
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  font-size: 0.85rem;
+}
+
+.download-button.validate::before {
+  display: none;
 }
 
 @keyframes rotating {

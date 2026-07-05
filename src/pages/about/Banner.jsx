@@ -18,39 +18,31 @@ const AboutBanner = () => {
       .map((char) =>
         char === " "
           ? `<span class="inline-block w-2">&nbsp;</span>`
-          : `<span class="inline-block opacity-0">${char}</span>`
+          : `<span class="inline-block">${char}</span>`
       )
       .join("");
 
     const headingSpans = headingRef.current.querySelectorAll("span");
 
-    tl.to(headingSpans, {
-      opacity: 1,
-      y: 0,
-      rotateX: 0,
-      scale: 1,
-      duration: 0.6,
-      stagger: 0.03,
-      from: { y: 50, scale: 0.8, rotateX: -90 },
-    });
+    tl.fromTo(
+      headingSpans,
+      { opacity: 0, y: 26 },
+      { opacity: 1, y: 0, duration: 0.55, stagger: 0.035 }
+    );
 
-    // Animate paragraph
+    // Animate paragraph sentences one after another
     const paragraphLines = paragraphRef.current.textContent.split(". ").filter(Boolean);
     paragraphRef.current.innerHTML = paragraphLines
-      .map((line) => `<p class="opacity-0 mb-4">${line}.</p>`)
+      .map((line) => `<p class="mb-4">${line.endsWith(".") ? line : `${line}.`}</p>`)
       .join("");
 
     const paragraphSpans = paragraphRef.current.querySelectorAll("p");
 
-    tl.to(
+    tl.fromTo(
       paragraphSpans,
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        stagger: 0.2,
-      },
-      "-=0.2"
+      { opacity: 0, y: 18 },
+      { opacity: 1, y: 0, duration: 0.7, stagger: 0.18 },
+      "-=0.25"
     );
 
     animationDone.current = true;

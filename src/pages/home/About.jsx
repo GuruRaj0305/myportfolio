@@ -7,10 +7,18 @@ import { HOME } from "../../data";
 
 gsap.registerPlugin(ScrollTrigger);
 
+// Splits "99.9%" into { num: 99.9, prefix: "", suffix: "%" } so the number can count up.
+const parseStatValue = (value) => {
+  const match = String(value).match(/^([^0-9]*)([0-9]+(?:\.[0-9]+)?)(.*)$/);
+  if (!match) return null;
+  return { prefix: match[1], num: parseFloat(match[2]), decimals: (match[2].split(".")[1] || "").length, suffix: match[3] };
+};
+
 const About = forwardRef((props, ref) => {
   const internalSectionRef = useRef(null);
   const sectionRef  = ref || internalSectionRef;
   const statsRef    = useRef([]);
+  const statValuesRef = useRef([]);
   const textHeadRef = useRef(null);
   const paraRef     = useRef(null);
   const btnRef      = useRef(null);
@@ -29,6 +37,22 @@ const About = forwardRef((props, ref) => {
       .from(textHeadRef.current, { x: 30, opacity: 0, duration: 0.7, ease: "power3.out" }, "-=0.5")
       .from(paraRef.current,     { x: 30, opacity: 0, duration: 0.7, ease: "power3.out" }, "-=0.5")
       .from(btnRef.current,      { y: 20, opacity: 0, duration: 0.5, ease: "back.out(1.6)" }, "-=0.4");
+
+    // Count-up on the stat numbers, synced with the card entrance.
+    statValuesRef.current.forEach((valueEl, i) => {
+      if (!valueEl) return;
+      const parsed = parseStatValue(HOME.about.stats[i].value);
+      if (!parsed) return;
+      const counter = { n: 0 };
+      tl.to(counter, {
+        n: parsed.num,
+        duration: 1.2,
+        ease: "power2.out",
+        onUpdate: () => {
+          valueEl.textContent = `${parsed.prefix}${counter.n.toFixed(parsed.decimals)}${parsed.suffix}`;
+        },
+      }, 0.15 + i * 0.1);
+    });
 
     return () => { tl.scrollTrigger?.kill(); tl.kill(); };
   }, [sectionRef]);
@@ -52,7 +76,7 @@ const About = forwardRef((props, ref) => {
                 ref={(el) => (statsRef.current[i] = el)}
                 className="about-stat-card"
               >
-                <div className="about-stat-value">{s.value}</div>
+                <div className="about-stat-value" ref={(el) => (statValuesRef.current[i] = el)}>{s.value}</div>
                 <div className="about-stat-label">{s.label}</div>
               </div>
             ))}

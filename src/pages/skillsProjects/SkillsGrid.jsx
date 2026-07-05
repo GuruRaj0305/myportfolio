@@ -13,10 +13,11 @@ const SkillsGrid = () => {
   const skillCategories = [
     { title: "Frontend", items: SKILLS.development.frontend },
     { title: "Backend", items: SKILLS.development.backend },
-    { title: "Programming", items: SKILLS.development.programming },
+    { title: "AI / LLM", items: SKILLS.ai },
     { title: "Databases", items: SKILLS.development.databases },
-    { title: "DevOps", items: SKILLS.devops },
+    { title: "Cloud & DevOps", items: SKILLS.devops },
     { title: "Architectures", items: SKILLS.architectures },
+    { title: "Programming", items: SKILLS.development.programming },
     { title: "Tools", items: SKILLS.tools },
   ];
 
@@ -24,11 +25,8 @@ const SkillsGrid = () => {
   const animate = () => {
     categoryRefs.current.forEach((el) => {
       if (!el) return;
-      gsap.from(el, {
-        opacity: 0,
-        y: 60,
-        duration: 0.8,
-        ease: "power3.out",
+      const chips = el.querySelectorAll(".skill-chip");
+      const tl = gsap.timeline({
         scrollTrigger: {
           trigger: el,
           start: "top 85%",
@@ -36,6 +34,19 @@ const SkillsGrid = () => {
           markers: false,
         },
       });
+      tl.from(el, {
+        opacity: 0,
+        y: 60,
+        duration: 0.8,
+        ease: "power3.out",
+      }).from(chips, {
+        opacity: 0,
+        y: 14,
+        scale: 0.85,
+        duration: 0.35,
+        stagger: 0.04,
+        ease: "back.out(1.6)",
+      }, "-=0.35");
     });
     ScrollTrigger.refresh(); // Refresh after all animations
   };
@@ -54,6 +65,7 @@ const SkillsGrid = () => {
       ref={containerRef}
       className="min-h-screen flex flex-col items-center justify-center px-6 py-20 bg-gradient-to-b from-gray-900/0 to-white/10"
     >
+      <span className="section-heading mb-4">Capabilities</span>
       <h2 className="text-4xl sm:text-5xl font-extrabold text-white mb-12 text-center">
         Skills Overview
       </h2>
@@ -72,7 +84,7 @@ const SkillsGrid = () => {
               {category.items.map((skill, j) => (
                 <span
                   key={j}
-                  className="px-4 py-2 bg-white/10 text-gray-200 rounded-full text-sm font-medium hover:bg-cyan-500/20 transition-all duration-300"
+                  className="skill-chip px-4 py-2 bg-white/10 text-gray-200 rounded-full text-sm font-medium hover:bg-cyan-500/20 transition-all duration-300"
                 >
                   {skill}
                 </span>

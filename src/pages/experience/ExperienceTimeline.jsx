@@ -84,7 +84,8 @@ const ExperienceTimeline = () => {
       className="relative py-24 px-6 bg-black/30 text-gray-200 overflow-hidden"
     >
       {/* Section Heading */}
-      <h3 className="text-4xl sm:text-5xl font-bold text-center mb-16 text-[var(--color-accent)] drop-shadow-[0_0_15px_rgba(var(--color-accent-rgb),0.4)]">
+      <span className="section-heading mb-4">Career Timeline</span>
+      <h3 className="text-4xl sm:text-5xl font-bold text-center mb-16 text-white">
         Professional Journey
       </h3>
 
@@ -115,6 +116,16 @@ const ExperienceTimeline = () => {
               <p className="text-gray-300 mb-3 leading-relaxed">
                 {exp.description}
               </p>
+              {exp.highlights?.length > 0 && (
+                <ul className="space-y-2 mb-4">
+                  {exp.highlights.map((point, i) => (
+                    <li key={i} className="flex items-start gap-2 text-gray-300 text-[0.95rem] leading-relaxed">
+                      <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[var(--color-accent)] flex-shrink-0" />
+                      {point}
+                    </li>
+                  ))}
+                </ul>
+              )}
               <div className="flex flex-wrap gap-2">
                 {exp.technologies.map((tech, i) => (
                   <span

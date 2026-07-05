@@ -31,29 +31,39 @@ const ExperienceAchievements = () => {
       }
     );
 
-    // Subtle magnetic hover motion
-    cards.forEach((card) => {
-      card.addEventListener("mousemove", (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = (e.clientX - rect.left) / rect.width - 0.5;
-        const y = (e.clientY - rect.top) / rect.height - 0.5;
-        gsap.to(card, {
-          rotationY: x * 8,
-          rotationX: -y * 8,
-          duration: 0.4,
-          ease: "power2.out",
+    // Subtle magnetic hover motion (skipped on touch devices)
+    const cleanups = [];
+    if (window.matchMedia("(hover: hover)").matches) {
+      cards.forEach((card) => {
+        const onMove = (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = (e.clientX - rect.left) / rect.width - 0.5;
+          const y = (e.clientY - rect.top) / rect.height - 0.5;
+          gsap.to(card, {
+            rotationY: x * 8,
+            rotationX: -y * 8,
+            duration: 0.4,
+            ease: "power2.out",
+          });
+        };
+        const onLeave = () => {
+          gsap.to(card, {
+            rotationX: 0,
+            rotationY: 0,
+            duration: 0.6,
+            ease: "elastic.out(1, 0.4)",
+          });
+        };
+        card.addEventListener("mousemove", onMove);
+        card.addEventListener("mouseleave", onLeave);
+        cleanups.push(() => {
+          card.removeEventListener("mousemove", onMove);
+          card.removeEventListener("mouseleave", onLeave);
         });
       });
+    }
 
-      card.addEventListener("mouseleave", () => {
-        gsap.to(card, {
-          rotationX: 0,
-          rotationY: 0,
-          duration: 0.6,
-          ease: "elastic.out(1, 0.4)",
-        });
-      });
-    });
+    return () => cleanups.forEach((fn) => fn());
   }, []);
 
   return (
@@ -62,7 +72,8 @@ const ExperienceAchievements = () => {
       className="relative py-24 px-6 text-gray-100 overflow-hidden"
     >
       {/* Section heading */}
-      <h3 className="text-4xl sm:text-5xl font-bold text-center mb-16 text-[var(--color-accent)] drop-shadow-[0_0_12px_rgba(var(--color-accent-rgb),0.4)]">
+      <span className="section-heading mb-4">Milestones</span>
+      <h3 className="text-4xl sm:text-5xl font-bold text-center mb-16 text-white">
         Achievements & Highlights
       </h3>
 

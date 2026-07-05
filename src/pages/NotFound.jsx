@@ -13,49 +13,43 @@ const NotFound = () => {
   const textRef = useRef(null);
   const buttonRef = useRef(null);
   useGSAP(() => {
-    const ctx = gsap.context(() => {
-      // IMAGE FLOAT + BREATHING SCALE
+    // MOUSE PARALLAX
+    const handleMouseMove = (e) => {
+      const { innerWidth, innerHeight } = window;
+      const x = (e.clientX / innerWidth - 0.5) * 35;
+      const y = (e.clientY / innerHeight - 0.5) * 25;
+      gsap.to(imageRef.current, {
+        x: x,
+        y: y,
+        duration: 1,
+        ease: "power3.out",
+      });
+    };
+    window.addEventListener("mousemove", handleMouseMove);
 
-      // MOUSE PARALLAX
-      const handleMouseMove = (e) => {
-        const { innerWidth, innerHeight } = window;
-        const x = (e.clientX / innerWidth - 0.5) * 35;
-        const y = (e.clientY / innerHeight - 0.5) * 25;
-        gsap.to(imageRef.current, {
-          x: x,
-          y: y,
-          duration: 1,
-          ease: "power3.out",
-        });
-      };
-      window.addEventListener("mousemove", handleMouseMove);
+    // TEXT ("404") SLIDE UP + GLITCH JITTER
+    gsap.fromTo(
+      textRef.current,
+      { opacity: 0, y: 60 },
+      { opacity: 1, y: 0, duration: 1.2, ease: "back.out(1.5)", delay: 1 }
+    );
 
-      // TEXT ("404") SLIDE UP + GLITCH JITTER
-      gsap.fromTo(
-        textRef.current,
-        { opacity: 0, y: 60 },
-        { opacity: 1, y: 0, duration: 1.2, ease: "back.out(1.5)", delay: 1 }
-      );
+    // BUTTON POP-IN WITH BOUNCE
+    gsap.fromTo(
+      buttonRef.current,
+      { opacity: 0, scale: 0.7, y: 50 },
+      {
+        opacity: 1,
+        scale: 1,
+        y: 0,
+        duration: 1,
+        ease: "back.out(1.7)",
+        delay: 1.5,
+      }
+    );
 
-      // BUTTON POP-IN WITH BOUNCE
-      gsap.fromTo(
-        buttonRef.current,
-        { opacity: 0, scale: 0.7, y: 50 },
-        {
-          opacity: 1,
-          scale: 1,
-          y: 0,
-          duration: 1,
-          ease: "back.out(1.7)",
-          delay: 1.5,
-        }
-      );
-
-      return () => window.removeEventListener("mousemove", handleMouseMove);
-    }, containerRef);
-
-    return () => ctx.revert();
-  }, []);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, { scope: containerRef });
 
   return (
     <>

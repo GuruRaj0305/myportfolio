@@ -3,12 +3,14 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { PROJECTS } from "../../data";
 import { useGSAP } from "@gsap/react";
+import { useNavigate } from "react-router-dom";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const ProjectsShowcase = () => {
   const containerRef = useRef(null);
   const projectRefs = useRef([]);
+  const navigate = useNavigate();
 
   const projects = Object.values(PROJECTS);
 
@@ -47,6 +49,7 @@ const ProjectsShowcase = () => {
       ref={containerRef}
       className="px-6 py-20 bg-gradient-to-b from-gray-950/50 to-gray-950/0 text-white min-h-screen flex flex-col items-center"
     >
+      <span className="section-heading mb-4">Selected Work</span>
       <h2 className="text-4xl sm:text-5xl font-extrabold mb-12 text-center">
         Projects Showcase
       </h2>
@@ -56,9 +59,7 @@ const ProjectsShowcase = () => {
           <div
             key={i}
             ref={(el) => (projectRefs.current[i] = el)}
-            onClick={() =>
-              window.open(`/project/${project.slug}`, "_blank")
-            }
+            onClick={() => navigate(`/project/${project.slug}`)}
             className="project-blueprint-card cursor-pointer bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-md shadow-lg hover:shadow-cyan-500/20 transition-all duration-300"
           >
             <h3 className="text-2xl sm:text-3xl font-semibold text-cyan-400 mb-2">

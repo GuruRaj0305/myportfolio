@@ -184,7 +184,7 @@ export default function Banner() {
   return (
     <section
       ref={bannerRef}
-      className="relative h-screen flex items-center justify-between px-10 md:px-20 overflow-hidden fluid-container"
+      className="relative h-screen flex items-center justify-between px-6 sm:px-10 md:px-20 overflow-hidden fluid-container"
     >
       {/* Fire canvas preserved for later use.
       <canvas

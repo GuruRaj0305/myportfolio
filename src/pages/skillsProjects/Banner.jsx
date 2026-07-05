@@ -73,7 +73,7 @@ const SkillsProjectsBanner = () => {
         className="text-lg sm:text-xl text-gray-300 max-w-2xl leading-relaxed mb-10"
       >
         Showcasing my expertise in crafting scalable, performant, and intelligent
-        systems — blending development skills with impactful projects.
+        systems — from multi-tenant SaaS platforms to AI-powered assistants.
       </p>
 
       {/* Floating Tech Icons */}

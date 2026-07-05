@@ -14,20 +14,18 @@ const AboutPersonalSide = () => {
     const items = el.querySelectorAll(".personal-item");
 
     // Set initial state
-    gsap.set(items, { opacity: 0, y: 80, rotateX: 30 });
+    gsap.set(items, { opacity: 0, y: 40 });
 
     // Animate on scroll
     gsap.to(items, {
       opacity: 1,
       y: 0,
-      rotateX: 0,
-      duration: 1.2,
-      stagger: 0.25,
-      ease: "power4.out",
+      duration: 0.8,
+      stagger: 0.15,
+      ease: "power3.out",
       scrollTrigger: {
         trigger: el,
         start: "top 85%",
-        end: "bottom 70%",
         toggleActions: "play none none reverse",
       },
     });
@@ -38,10 +36,8 @@ const AboutPersonalSide = () => {
       ref={sectionRef}
       className="relative py-24 px-6 md:px-16 text-center overflow-hidden"
     >
-      {/* Subtle background lighting */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(var(--color-accent-rgb),0.06),transparent_75%)] pointer-events-none"></div>
-
       <div className="max-w-4xl mx-auto relative z-10">
+        <span className="section-heading mb-4">Beyond Code</span>
         <h2 className="text-4xl md:text-5xl font-bold text-white mb-14 tracking-wide">
           Personal Side
         </h2>

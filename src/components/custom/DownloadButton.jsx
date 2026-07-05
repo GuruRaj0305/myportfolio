@@ -22,8 +22,8 @@ const FizzyButton = () => {
 
   return (
     <div>
-      <button id="button" className={`${status} download-button`} onClick={handleClick}>
-        <strong>{status === "validate" ? "✔" : "Resume"}</strong> 
+      <button id="button" className={`btn-editorial download-button ${status}`} onClick={handleClick}>
+        <strong>{status === "validate" ? "✔" : "Resume"}</strong>
       </button>
     </div>
   );

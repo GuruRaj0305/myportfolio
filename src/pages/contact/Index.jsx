@@ -12,10 +12,11 @@ const ContactPage = () => {
 
   useGSAP(() => {
     // Subtle floating glow animation on hover
+    const cleanups = [];
     linksRef.current.forEach((link) => {
       const icon = link.querySelector("svg");
 
-      link.addEventListener("mouseenter", () => {
+      const onEnter = () => {
         gsap.to(link, {
           scale: 1.15,
           color: "var(--color-accent)",
@@ -24,9 +25,9 @@ const ContactPage = () => {
           ease: "power2.out",
         });
         gsap.to(icon, { rotation: 10, duration: 0.3, ease: "power2.out" });
-      });
+      };
 
-      link.addEventListener("mouseleave", () => {
+      const onLeave = () => {
         gsap.to(link, {
           scale: 1,
           color: "var(--color-muted)",
@@ -35,8 +36,17 @@ const ContactPage = () => {
           ease: "power2.inOut",
         });
         gsap.to(icon, { rotation: 0, duration: 0.3, ease: "power2.inOut" });
+      };
+
+      link.addEventListener("mouseenter", onEnter);
+      link.addEventListener("mouseleave", onLeave);
+      cleanups.push(() => {
+        link.removeEventListener("mouseenter", onEnter);
+        link.removeEventListener("mouseleave", onLeave);
       });
     });
+
+    return () => cleanups.forEach((fn) => fn());
   }, []);
 
   const links = [
@@ -76,11 +86,13 @@ const ContactPage = () => {
       ease: "elastic.out(1, 0.7)",
     });
 
+    // Gentle idle float once the entrance settles
     gsap.to(links, {
-      y: 0,
+      y: -6,
       repeat: -1,
       yoyo: true,
       duration: 2.5,
+      delay: 1.4,
       ease: "sine.inOut",
       stagger: 0.15,
     });
@@ -130,10 +142,11 @@ const ContactPage = () => {
     };
 
     // Launch new shooting stars periodically
-    setInterval(() => {
+    const starTimer = setInterval(() => {
       if (Math.random() < 0.6) createShootingStar();
     }, 1000);
 
+    let rafId;
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -174,11 +187,13 @@ const ContactPage = () => {
         if (s.alpha <= 0) shootingStars.splice(i, 1);
       }
 
-      requestAnimationFrame(animate);
+      rafId = requestAnimationFrame(animate);
     };
     animate();
 
     return () => {
+      clearInterval(starTimer);
+      cancelAnimationFrame(rafId);
       window.removeEventListener("resize", resize);
     };
   }, []);

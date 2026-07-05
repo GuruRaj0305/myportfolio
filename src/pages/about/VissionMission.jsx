@@ -16,59 +16,33 @@ const AboutVisionMission = () => {
     const headingLetters = headingRef.current.querySelectorAll("span");
 
     // Initial states
-    gsap.set(cards, { opacity: 0, y: 120, scale: 0.9, rotateX: 15 });
-    gsap.set(headingLetters, { opacity: 0, y: 40 });
+    gsap.set(cards, { opacity: 0, y: 50 });
+    gsap.set(headingLetters, { opacity: 0, y: 30 });
 
     // Animate heading letters (smooth rise)
     gsap.to(headingLetters, {
       opacity: 1,
       y: 0,
-      duration: 1.2,
+      duration: 0.9,
       ease: "power3.out",
-      stagger: 0.05,
+      stagger: 0.04,
       scrollTrigger: {
         trigger: el,
         start: "top 90%",
       },
     });
 
-    // Animate cards with depth & glow
+    // Calm card rise
     gsap.to(cards, {
       opacity: 1,
       y: 0,
-      scale: 1,
-      rotateX: 0,
-      boxShadow: "0 0 40px rgba(var(--color-accent-rgb),0.25)",
-      duration: 1.5,
-      ease: "power4.out",
-      stagger: 0.3,
+      duration: 1,
+      ease: "power3.out",
+      stagger: 0.15,
       scrollTrigger: {
         trigger: el,
         start: "top 80%",
-        end: "bottom 60%",
         toggleActions: "play none none reverse",
-      },
-      onComplete: () => {
-        // Gentle floating motion
-        cards.forEach((card, i) => {
-          gsap.to(card, {
-            y: "+=10",
-            repeat: -1,
-            yoyo: true,
-            duration: 3 + i,
-            ease: "sine.inOut",
-          });
-        });
-      },
-    });
-
-    // Parallax drift effect
-    gsap.to(cards, {
-      yPercent: -10,
-      ease: "none",
-      scrollTrigger: {
-        trigger: el,
-        scrub: 1,
       },
     });
   }, []);
@@ -86,10 +60,8 @@ const AboutVisionMission = () => {
       ref={sectionRef}
       className="relative py-28 px-6 md:px-16 overflow-hidden"
     >
-      {/* Subtle glow background */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(var(--color-accent-rgb),0.07),transparent_70%)] pointer-events-none"></div>
-
       <div className="max-w-5xl mx-auto text-center relative z-10">
+        <span className="section-heading mb-4">Direction</span>
         <h2
           ref={headingRef}
           className="text-4xl md:text-5xl font-bold text-white mb-16 tracking-wide"
