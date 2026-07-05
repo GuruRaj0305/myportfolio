@@ -25,28 +25,23 @@ const SkillsGrid = () => {
   const animate = () => {
     categoryRefs.current.forEach((el) => {
       if (!el) return;
+      // fromTo with explicit end values — from() inside a ScrollTriggered
+      // timeline can capture the hidden state as its end value here and
+      // leave the cards invisible.
       const chips = el.querySelectorAll(".skill-chip");
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: el,
-          start: "top 85%",
-          toggleActions: "play none none reverse",
-          markers: false,
-        },
-      });
-      tl.from(el, {
-        opacity: 0,
-        y: 60,
-        duration: 0.8,
-        ease: "power3.out",
-      }).from(chips, {
-        opacity: 0,
-        y: 14,
-        scale: 0.85,
-        duration: 0.35,
-        stagger: 0.04,
-        ease: "back.out(1.6)",
-      }, "-=0.35");
+      const trigger = { trigger: el, start: "top 85%", toggleActions: "play none none reverse" };
+      gsap.fromTo(el,
+        { opacity: 0, y: 60 },
+        { opacity: 1, y: 0, duration: 0.8, ease: "power3.out", scrollTrigger: trigger }
+      );
+      gsap.fromTo(chips,
+        { opacity: 0, y: 14, scale: 0.85 },
+        {
+          opacity: 1, y: 0, scale: 1,
+          duration: 0.35, stagger: 0.04, delay: 0.35, ease: "back.out(1.6)",
+          scrollTrigger: { ...trigger },
+        }
+      );
     });
     ScrollTrigger.refresh(); // Refresh after all animations
   };

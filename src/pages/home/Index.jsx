@@ -13,7 +13,7 @@ import Banner from "./Banner";
 import { useLocation } from "react-router-dom";
 import { useGSAP } from "@gsap/react";
 import HomeScrollExperience from "../../components/custom/HomeScrollExperience";
-import ScrollJourney from "../../components/custom/ScrollJourney";
+import ScrollTerminal from "../../components/custom/ScrollTerminal";
 
 // Register plugin once
 gsap.registerPlugin(ScrollTrigger, useGSAP);
@@ -42,8 +42,8 @@ function Home() {
         <TypingBackgroundText key={location.pathname}>
           <ScrollSceneObjects />
           <HomeScrollExperience />
+          <ScrollTerminal />
           <div className="home-scroll-story relative z-10">
-            <ScrollJourney />
             <Banner />
             <About ref={aboutRef} />
             <Highlights />
