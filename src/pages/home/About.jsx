@@ -100,9 +100,9 @@ const About = forwardRef((props, ref) => {
             {HOME.about.description}
           </p>
 
-          <div ref={btnRef}>
+          {/* <div ref={btnRef}>
             <Button to={HOME.about.action.link}>{HOME.about.action.label}</Button>
-          </div>
+          </div> */}
         </div>
       </div>
     </section>
